@@ -1,0 +1,103 @@
+name: Weekly Competitor Intelligence Report
+
+on:
+  schedule:
+    # Every Monday at 09:00 UTC (about 03:00 CST / 04:00 EDT)
+    - cron: '0 9 * * 1'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  generate-report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check schedule setting
+        id: check
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            enabled=$(jq -r '.scheduledReports // true' data/settings.json 2>/dev/null || echo "true")
+            if [ "$enabled" != "true" ]; then
+              echo "Scheduled reports are disabled. Skipping this run."
+              echo "skip=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "Scheduled reports are enabled. Proceeding."
+              echo "skip=false" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            echo "Manual trigger. Proceeding regardless of schedule setting."
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Setup Node
+        if: steps.check.outputs.skip != 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        if: steps.check.outputs.skip != 'true'
+        run: npm ci
+
+      - name: Fetch competitor sitemaps
+        if: steps.check.outputs.skip != 'true'
+        run: npm run fetch:sitemaps
+
+      - name: Diff sitemaps vs previous week
+        if: steps.check.outputs.skip != 'true'
+        run: npm run diff:sitemaps
+
+      - name: Process uploaded SEMrush CSVs
+        if: steps.check.outputs.skip != 'true'
+        run: npm run process:csvs
+
+      - name: Generate report with Claude
+        if: steps.check.outputs.skip != 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: npm run report:generate
+
+      - name: Commit report and snapshots back to repo
+        if: steps.check.outputs.skip != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Mitigations for intermittent GitHub HTTPS push 500s
+          git config http.postBuffer 524288000
+          git config http.lowSpeedLimit 1000
+          git config http.lowSpeedTime 60
+
+          git add data/ reports/
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git commit -m "Weekly competitor report: $(date -u +%Y-%m-%d)"
+
+          # Retry push with backoff (handles transient GitHub 500s on send-pack)
+          for attempt in 1 2 3 4 5; do
+            echo "Push attempt $attempt..."
+            if git push; then
+              echo "Push succeeded on attempt $attempt"
+              exit 0
+            fi
+            echo "Push failed on attempt $attempt"
+            if [ $attempt -lt 5 ]; then
+              # Pull any new commits before retrying (rebase to keep our commit on top)
+              git pull --rebase || true
+              sleep $((attempt * 10))
+            fi
+          done
+
+          echo "All push attempts failed"
+          exit 1
