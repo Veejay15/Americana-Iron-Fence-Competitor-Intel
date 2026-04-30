@@ -7,6 +7,14 @@
       "sitemapUrl": "https://innovafence.com/sitemap.xml",
       "addedAt": "2026-04-30",
       "active": true
+    },
+    {
+      "id": "paintersinc-net",
+      "name": "Painters Inc",
+      "domain": "https://paintersinc.net/",
+      "sitemapUrl": "https://paintersinc.net/sitemap.xml",
+      "addedAt": "2026-04-30",
+      "active": true
     }
   ]
 }
