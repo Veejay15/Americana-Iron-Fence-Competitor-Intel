@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { upload } from '@vercel/blob/client';
 import { Competitor } from '@/lib/types';
 import { Upload, FileText, Check, AlertCircle } from 'lucide-react';
 import { todayISO } from '@/lib/utils';
@@ -16,7 +15,7 @@ interface FileResult {
   message?: string;
 }
 
-const MAX_BYTES = 50 * 1024 * 1024;
+const MAX_BYTES = 4 * 1024 * 1024;
 
 const TYPE_OPTIONS = [
   { value: 'backlinks', label: 'Backlinks (new links acquired)' },
@@ -72,7 +71,7 @@ export function UploadClient({ competitors }: Props) {
               ? {
                   filename: f.name,
                   status: 'error',
-                  message: `File is ${sizeMb}MB. Maximum is 50MB.`,
+                  message: `File is ${sizeMb}MB. Maximum is 4MB. Filter the Semrush export (e.g. last 7 days only) and re-export.`,
                 }
               : p
           )
@@ -81,21 +80,24 @@ export function UploadClient({ competitors }: Props) {
       }
 
       try {
-        const safeFilename = f.name.replace(/[^a-zA-Z0-9._-]/g, '_');
-        const pathname = `csv/${today}/${safeFilename}`;
         const fileType =
           selectedType === 'auto' ? inferTypeFromFilename(f.name) : selectedType;
 
-        await upload(pathname, f, {
-          access: 'public',
-          handleUploadUrl: '/api/upload/blob',
-          contentType: 'text/csv',
-          clientPayload: JSON.stringify({
-            competitorId: selectedCompetitorId,
-            type: fileType,
-            size: f.size,
-          }),
+        const formData = new FormData();
+        formData.append('file', f);
+        formData.append('date', today);
+        formData.append('competitorId', selectedCompetitorId);
+        formData.append('type', fileType);
+
+        const res = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData,
         });
+
+        if (!res.ok) {
+          const json = await res.json().catch(() => ({}));
+          throw new Error(json.error || `Upload failed (${res.status})`);
+        }
 
         setFiles((prev) =>
           prev.map((p, idx) =>
@@ -215,7 +217,7 @@ export function UploadClient({ competitors }: Props) {
           Multiple files OK. Each will be tagged for the competitor selected above.
         </p>
         <p className="text-xs text-slate-400 mt-2">
-          Files up to 50MB are supported.
+          Files up to 4MB are supported. Filter Semrush exports (last 7 days, top rows) before downloading to stay under the cap.
         </p>
       </div>
 
