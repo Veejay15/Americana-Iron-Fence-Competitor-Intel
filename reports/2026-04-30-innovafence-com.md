@@ -4,123 +4,129 @@
 
 ## Executive Summary
 
-- This is the first time we have pulled a full snapshot of Innova Fence's website, so this report reflects their entire content footprint rather than new activity from a single week. They have built 40 indexed pages covering their core fence services, a dedicated suburb-by-suburb location strategy across the northwest Chicago suburbs, and a set of customer resource pages (financing, warranty, FAQ, video gallery). This is a well-structured competitor worth watching closely.
-- Innova Fence's location strategy is concentrated in the northwest and north suburban ring: Barrington, Northbrook, Highland Park, Palatine, Buffalo Grove, Arlington Heights, Elk Grove Village, Mundelein, Lake Zurich, Lake Forest, Downers Grove, Glenview, and others. Several of these towns overlap with areas Americana already serves or could credibly serve.
-- Their backlink profile, with roughly 1,100 links pointing to their site, leans heavily on fence industry partner directories and referral networks. The links are low-authority but numerous, and they are consistently pointing to specific location pages, which reinforces those suburb pages in search rankings.
-- Innova Fence ranks on the first two pages of Google for high-value terms like "fence contractors chicago" (position 8), "vinyl fence installation chicago" (position 6), "aluminum fence chicago" (position 7), and "commercial fencing chicago" (position 11). Their location pages are pulling in targeted suburb-level traffic for towns like Barrington. Americana has room to compete on several of these terms.
+- This is the first time we have pulled a full snapshot of Innova Fence's website, so what you see below is a picture of their entire current footprint, not a single week of activity. Going forward, weekly reports will show only what changed.
+- Innova Fence has built a dense network of suburb-specific location pages across the northwest and north suburbs, including Barrington, Northbrook, Highland Park, Arlington Heights, Downers Grove, and roughly a dozen others. These are the pages driving most of their search traffic outside Chicago proper.
+- Their keyword rankings are stable and concentrated around vinyl, aluminum, chain link, and composite fencing in the Chicago area. They are not ranking for ornamental iron, custom gates, railings, or structural work, which is where Americana has clear open ground.
+- Americana should focus on claiming suburb-specific pages in the north and northwest suburbs where Innova Fence is active but Americana has no presence, and on pressing the advantage in custom ironwork categories where Innova Fence simply does not compete.
 
 ---
 
 ## Innova Fence's Current Content Footprint
 
-Because this is a first-time snapshot rather than a week-over-week comparison, the pages listed below represent Innova Fence's full site as it stands today, not new additions from this week specifically. Future reports will flag only pages they add going forward.
+Because this is the first snapshot we have taken of Innova Fence's site, every page below represents content that already exists and is currently competing against Americana. Future reports will highlight only what is new or changed week to week.
 
-### Core Service Pages
+Innova Fence currently has 40 indexed pages. Here is what they cover.
 
-Innova Fence has dedicated pages for each of their main fence products and customer types:
+**Core service pages**
 
-- **https://innovafence.com/fences/residential-fencing/** — Targets homeowners looking for a fence company
-- **https://innovafence.com/fences/commercial-fencing/** — Targets businesses, property managers, and commercial buyers
-- **https://innovafence.com/fences/aluminum-fence/** — Targets aluminum fence buyers in the Chicago area
-- **https://innovafence.com/fences/chain-link-fence/** — Targets chain link fence buyers
-- **https://innovafence.com/fences/vinyl-fence/** — Targets vinyl fence buyers
-- **https://innovafence.com/fences/wood-fence/** — Targets wood fence buyers
-- **https://innovafence.com/fences/ornamental-steel-fence/** — Targets ornamental steel fence buyers (this overlaps directly with Americana's wrought iron and ornamental iron work)
-- **https://innovafence.com/fences/composite-fence/** — Targets composite fence buyers
-- **https://innovafence.com/gates/** — Targets gate installation buyers generally
+- `innovafence.com/fences/` — general fencing hub
+- `innovafence.com/fences/residential-fencing/` — targeting homeowners looking for a fence contractor
+- `innovafence.com/fences/commercial-fencing/` — targeting businesses looking for a fence contractor
+- `innovafence.com/fences/aluminum-fence/` — aluminum fence installation
+- `innovafence.com/fences/chain-link-fence/` — chain link fence installation
+- `innovafence.com/fences/vinyl-fence/` — vinyl fence installation
+- `innovafence.com/fences/wood-fence/` — wood fence installation
+- `innovafence.com/fences/ornamental-steel-fence/` — ornamental steel fence installation
+- `innovafence.com/fences/composite-fence/` — composite fence installation
+- `innovafence.com/gates/` — gates (general hub only, no detail pages visible)
 
-### Location Pages (Northwest and North Suburbs)
+**Location pages (suburb-specific fence company pages)**
 
-Innova Fence has built individual pages for each of the following Illinois towns:
+Innova Fence has built dedicated pages for the following Illinois suburbs. Each page targets people searching for a fence company in that specific town.
 
-- **https://innovafence.com/illinois-fence-company/barrington-illinois-fence-company/** — Fence company in Barrington, IL
-- **https://innovafence.com/illinois-fence-company/northbrook-illinois-fence-company/** — Fence company in Northbrook, IL
-- **https://innovafence.com/illinois-fence-company/lake-zurich-illinois-fence-company/** — Fence company in Lake Zurich, IL
-- **https://innovafence.com/illinois-fence-company/palatine-illinois-fence-company/** — Fence company in Palatine, IL
-- **https://innovafence.com/illinois-fence-company/buffalo-grove-illinois-fence-company/** — Fence company in Buffalo Grove, IL
-- **https://innovafence.com/illinois-fence-company/des-plaines-illinois-fence-company/** — Fence company in Des Plaines, IL
-- **https://innovafence.com/illinois-fence-company/glenview-illinois-fence-company/** — Fence company in Glenview, IL (note: Americana has an about-Glenview page but no dedicated fence installation or gate installation page for Glenview)
-- **https://innovafence.com/illinois-fence-company/lake-forest-illinois-fence-company/** — Fence company in Lake Forest, IL (note: Americana has an about-Lake-Forest page but no dedicated service page for Lake Forest)
-- **https://innovafence.com/illinois-fence-company/highland-park-illinois-fence-company/** — Fence company in Highland Park, IL (note: Americana has an about-Highland-Park page but no dedicated service page)
-- **https://innovafence.com/illinois-fence-company/arlington-heights-illinois-fence-company/** — Fence company in Arlington Heights, IL
-- **https://innovafence.com/illinois-fence-company/elk-grove-village-illinois-fence-company/** — Fence company in Elk Grove Village, IL
-- **https://innovafence.com/illinois-fence-company/mundelein-illinois-fence-company/** — Fence company in Mundelein, IL
-- **https://innovafence.com/illinois-fence-company/downers-grove-illinois-fence-company/** — Fence company in Downers Grove, IL
-- **https://innovafence.com/illinois-fence-company/kildeer-illinois-fence-company/** — Fence company in Kildeer, IL
-- **https://innovafence.com/illinois-fence-company/elmhurst-illinois-fence-company/** — Fence company in Elmhurst, IL
-- **https://innovafence.com/illinois-fence-company/rossville-illinois-fence-company/** — Fence company in Rossville, IL (a small downstate town, far outside the Chicagoland market)
-- **https://innovafence.com/illinois-fence-company/converse-illinois-fence-company/** — URL slug says "Converse, Illinois." No city named Converse exists in Illinois as a recognized municipality, so intent of this page is unclear.
+- Barrington
+- Northbrook
+- Lake Zurich
+- Palatine
+- Buffalo Grove
+- Des Plaines
+- Glenview
+- Lake Forest
+- Highland Park
+- Arlington Heights
+- Elmhurst
+- Elk Grove Village
+- Mundelein
+- Downers Grove
+- Kildeer
+- Rossville
+- Converse (note: Converse is not a recognized Chicago suburb; the intent of this page is unclear)
 
-### Customer Resource Pages
+All of these pages live under `innovafence.com/illinois-fence-company/`.
 
-- **https://innovafence.com/resources/financing/** — Fence financing options
-- **https://innovafence.com/resources/warranty/** — Warranty information
-- **https://innovafence.com/resources/warranty/details/** — Detailed warranty terms
-- **https://innovafence.com/resources/faqs/** — Frequently asked questions
-- **https://innovafence.com/resources/photo-gallery/** — Project photo gallery
-- **https://innovafence.com/resources/video-gallery/** — Project video gallery
+**Supporting pages**
+
+- `innovafence.com/illinois-fence-company/` — state-level landing page for Illinois fence services
+- `innovafence.com/resources/financing/` — targeting customers looking for fence financing options
+- `innovafence.com/resources/warranty/` and `innovafence.com/resources/warranty/details/` — warranty information
+- `innovafence.com/resources/faqs/` — frequently asked questions
+- `innovafence.com/resources/photo-gallery/` and `innovafence.com/resources/video-gallery/` — project galleries
+- `innovafence.com/company/about-us/` and `innovafence.com/company/testimonials/` — company and reviews pages
+- `innovafence.com/contact/` — contact page
 
 ---
 
 ## Backlink Profile
 
-Innova Fence has roughly 1,100 backlinks pointing to their site. No new links were earned this week (this is baseline data reflecting their existing link history).
+Innova Fence's site has built up roughly 1,100 backlinks over time. No new backlinks were earned this period. Here is what their current link profile looks like.
 
-A few things worth noting about the quality and pattern of those links:
+**What the links are worth.** Most of Innova Fence's backlinks come from low-authority sources. None of the linking sites visible here carry meaningful weight on their own. This is not unusual for a local fence company, but it does mean their backlink profile is not a strong competitive advantage.
 
-**The links are low-authority but strategically placed.** The most prominent source is a fence industry partner at greenwoodfence.com, which links to Innova's homepage twice. Two other fence company referral network pages, one from a Tennessee company (masterfencetn.com) and one from a Columbus, Ohio company (millsfencecolumbus.com), link to Innova's homepage describing them as a "Northwest Chicago Fence Company." These are fence industry network links, not editorial coverage, but they do help establish Innova's geographic identity in search.
+**Where the links come from.** The majority of their backlinks appear to come from two types of sources:
 
-**One low-authority directory site (bregmancorp.com) is pointing to multiple Innova location pages** at once, including Buffalo Grove, Des Plaines, Palatine, Downers Grove, Northbrook, Kildeer, Glenview, Mundelein, Highland Park, Elk Grove Village, and Converse. These links have essentially zero authority on their own, but the pattern suggests Innova is actively participating in link-building networks tied to their location pages. It is a volume play, not a quality play.
+1. A fence industry partner network. Sites like greenwoodfence.com and masterfencetn.com link to Innova Fence as part of what appears to be a regional contractor referral or partner directory. These links use anchor text like "Innova Fence - Northwest Chicago Fence Company," which tells you they are positioning themselves as a northwest suburbs specialist.
 
-Americana's backlink strategy does not need to mirror this approach. One strong link from a local business association, a neighborhood publication, or a Chicago real estate site is worth more than a dozen links from these partner directories.
+2. A link exchange network. A large portion of their suburb-specific location pages (Buffalo Grove, Des Plaines, Palatine, Northbrook, Downers Grove, and others) are being linked to from what appears to be a shared link directory called bregmancorp.com. These links all come from the same source page and have very low authority. This kind of link building is a common tactic for local service companies trying to boost suburb-specific pages, but it carries little real weight and some risk if search engines treat it as manipulative.
+
+**The takeaway for Americana.** Innova Fence's backlink strategy is quantity-focused and low quality. Americana does not need to match their link volume. A handful of links from genuinely credible sources, such as local Chicago business associations, neighborhood news sites, contractor directories, or trade organizations, would outweigh most of what Innova Fence has built.
 
 ---
 
-## Keyword and Ranking Snapshot
+## Keyword Rankings
 
-Innova Fence currently ranks for approximately 357 search terms. Here are the most important ones to be aware of:
+Innova Fence is currently ranking for 357 search terms. Their rankings have been stable with no significant movement this period. Here are the most important things to know.
 
-| Keyword | Innova's Position | Monthly Searches |
-|---|---|---|
-| fence contractors chicago | 8 (organic) | 880 |
-| vinyl fence installation chicago | 6 | 1,300 |
-| chicago area fence companies | 16 | 3,600 |
-| aluminum fence chicago | 7 | 590 |
-| aluminum fences chicago | 6 | 390 |
-| composite fence chicago | 7 | 720 |
-| chicago chain link fence | 7 | 260 |
-| commercial fencing chicago | 11 | 880 |
-| chicago vinyl fence | 17 | 2,900 |
-| fence installation lincolnwood il | 1 (local) | 110 |
-| aluminum fences barrington | 2 | 50 |
-| barrington il fencing contractor | 2 | 40 |
-| wood fence installation barrington | 4 | 50 |
+**Their strongest rankings**
 
-A few observations:
+- "fence installation lincolnwood il" — holding the top spot in the local map results
+- "barrington il fencing contractor" — ranking 2nd in organic results
+- "aluminum fences barrington" — ranking 2nd in organic results
+- "wood fence installation barrington" — ranking 4th in organic results
 
-**"Vinyl fence installation chicago" (1,300 searches/month, Innova at position 6)** is a term worth noting because Americana already has a vinyl fence page at /fence/chicago-vinyl-fence. Americana should be competing on this term and may have room to climb.
+Barrington is clearly their best-performing suburb in search. Their dedicated Barrington page is doing real work.
 
-**"Fence contractors chicago" (880 searches/month)** and **"commercial fencing chicago" (880 searches/month)** are high-value terms where Innova holds a middling position. These are winnable with stronger content and backlinks.
+**Their mid-tier Chicago rankings**
 
-**"Composite fence chicago" (720 searches/month, Innova at position 7)** is a term driven by their composite fence page. Americana does not appear to have a composite fence page, and composite fencing is outside Americana's core iron and metal service offerings, so this is not a gap to chase.
+- "vinyl fence installation chicago" — ranking 6th
+- "aluminum fences chicago" — ranking 6th
+- "chicago chain link fence" — ranking 7th
+- "aluminum fence chicago" — ranking 7th
+- "composite fence chicago" — ranking 7th
+- "fence contractors chicago" — ranking 8th and 13th (appearing in two different result types)
+- "commercial fencing chicago" — ranking 11th
+- "chicago area fence companies" — ranking 16th
+- "chicago vinyl fence" — ranking 17th (slipped one spot from 16th)
 
-**Their Barrington location page is doing real work**, pulling in traffic for multiple suburb-specific keywords. This is the clearest example of their location-page strategy paying off.
+**What Innova Fence is not ranking for.** Search through their entire keyword list and you will find no rankings for wrought iron, ornamental iron, custom gates, railings, fire escapes, structural steel, or any kind of metalwork beyond ornamental steel fence. They are a fence company. Americana is an iron works and fence company. That distinction matters a great deal in search, and right now Americana has those categories largely to itself against this competitor.
 
 ---
 
 ## Recommended Actions for Americana Iron Works
 
-**1. Build a dedicated fence installation service page for Glenview.**
-Trigger: Innova Fence has a live page at https://innovafence.com/illinois-fence-company/glenview-illinois-fence-company/ targeting fence buyers in Glenview, and it is backed by backlinks specifically pointing to that page. Americana currently has /about-glenview-chicago, which is an informational page about the area, not a service page built to rank for "fence installation Glenview" or "iron fence Glenview." A service page at a slug like /fence-installation-glenview or /custom-ironworks/gate-installation-glenview does not currently exist in Americana's page library. Why this fits Americana: Americana already serves the north shore and near-north suburbs, and Glenview is a natural extension of the neighborhoods they cover.
+**1. Build a dedicated fence installation page for Des Plaines.**
+Trigger: Innova Fence has a live Des Plaines location page and is actively earning backlinks to it, making Des Plaines a suburb where they are building visibility. Americana has no Des Plaines-specific page of any kind. Proposed slug: `/areas-we-serve/fence-installation-des-plaines` or `/custom-ironworks/gate-installation-des-plaines`. Confirmed against Americana's existing pages: neither exists. Why this fits Americana: Americana already has this exact page format built out for more than two dozen Chicago neighborhoods and suburbs, including comparable north and northwest suburb targets.
 
-**2. Build a dedicated fence or gate installation service page for Highland Park.**
-Trigger: Innova Fence has a live page at https://innovafence.com/illinois-fence-company/highland-park-illinois-fence-company/ targeting Highland Park fence buyers. Americana has /about-highland-park, again an informational page rather than a service page. No slug like /fence-installation-highland-park or /custom-ironworks/gate-installation-highland-park exists in Americana's current page library. Why this fits Americana: Highland Park is an affluent north shore community with a strong market for custom iron gates and ornamental fencing, exactly what Americana specializes in. Innova targets it with a general fence page. Americana could own it for iron specifically.
+**2. Build a dedicated fence or gate installation page for Arlington Heights.**
+Trigger: Innova Fence has a live Arlington Heights location page and is actively targeting that market. Americana has no Arlington Heights page. Proposed slug: `/areas-we-serve/fence-installation-arlington-heights`. Confirmed against Americana's existing pages: does not exist. Why this fits Americana: Arlington Heights is a major northwest suburb and fits squarely within Americana's Chicagoland service area. Americana already builds the same page type for other suburbs.
 
-**3. Build a dedicated fence or gate installation service page for Lake Forest.**
-Trigger: Innova Fence has a live page at https://innovafence.com/illinois-fence-company/lake-forest-illinois-fence-company/. Americana has /about-lake-forest, which is informational. No fence installation or gate installation service page for Lake Forest exists in Americana's library. Why this fits Americana: Lake Forest is one of the wealthiest communities in the Chicago suburbs and a natural market for custom ironwork, wrought iron gates, and ornamental fencing. This is squarely in Americana's lane, and Innova is staking a claim there right now.
+**3. Build a dedicated fence or gate installation page for Downers Grove.**
+Trigger: Innova Fence has a Downers Grove location page with backlinks pointing to it. Americana has no Downers Grove presence. Proposed slug: `/areas-we-serve/fence-installation-downers-grove`. Confirmed against Americana's existing pages: does not exist. Why this fits Americana: same pattern as above. Downers Grove is a large, high-demand suburb in the western corridor and fits Americana's service area.
 
-**4. Strengthen the existing /fence/chicago-vinyl-fence page to compete for "vinyl fence installation chicago."**
-Trigger: Innova Fence holds position 6 for "vinyl fence installation chicago," a term with 1,300 monthly searches. They are sending traffic from this term to their homepage, meaning they do not even have a dedicated page for it yet. Americana already has /fence/chicago-vinyl-fence and /fence/vinyl-and-pvc-fence-installation. Why this fits Americana: Americana already offers vinyl fence installation, and both pages exist. The goal here is not to build something new but to make sure those existing pages have strong written content, clear calls to action, and enough detail about the service to outrank a competitor who is not even pointing to a dedicated page for this term.
+**4. Build a dedicated fence or gate installation page for Northbrook.**
+Trigger: Innova Fence has a Northbrook location page with backlinks pointing to it and is ranking for Northbrook-area searches. Americana has no Northbrook page. Proposed slug: `/areas-we-serve/fence-installation-northbrook`. Confirmed against Americana's existing pages: does not exist. Why this fits Americana: Northbrook is on the North Shore, adjacent to areas like Glenview and Highland Park where Americana already has content (`/about-glenview-chicago`, `/about-highland-park`). Adding Northbrook closes a gap in an area Americana is already working.
 
-**5. Review and strengthen the existing /fence/wrought-iron-fence-installation page in light of Innova's ornamental steel fence page.**
-Trigger: Innova Fence has a live page at https://innovafence.com/fences/ornamental-steel-fence/ targeting ornamental steel fence buyers, which overlaps directly with Americana's core offering in wrought iron and ornamental iron fencing. Why this fits Americana: Americana's /fence/wrought-iron-fence-installation and /fence/iron-fence pages are the natural competitors to Innova's ornamental steel page. Americana has a deeper track record and more specialized expertise in this category. Make sure those pages clearly communicate that expertise, include photos of completed projects, and are written to answer the questions a homeowner would actually type into Google when comparing iron fence companies.
+**5. Add an ornamental steel fence service page that targets the Chicago and suburbs market.**
+Trigger: Innova Fence has a live `/fences/ornamental-steel-fence/` page and is ranking across Chicago-area fence searches. Right now, someone searching for "ornamental steel fence Chicago" could land on Innova Fence's page instead of Americana's. Americana has `/fence/iron-fence` and `/fence/wrought-iron-fence-installation` but no page specifically targeting the "ornamental steel fence" phrase. Proposed slug: `/fence/ornamental-steel-fence-chicago`. Confirmed against Americana's existing pages: this specific slug does not exist. Why this fits Americana: ornamental steel fencing is core to what Americana does. Adding a page that uses that exact phrase captures searches Innova Fence is currently targeting, and Americana's actual craftsmanship and portfolio give them a significant content advantage on this topic.
+
+**6. Pursue one or two credible local backlinks to counter Innova Fence's volume strategy.**
+Trigger: Innova Fence has roughly 1,100 backlinks, most from low-quality link exchange sources. Rather than trying to match volume, Americana should focus on quality. One link from a respected source, such as a Chicago Business Association directory, a neighborhood association website, a local news outlet that covers home improvement, or a trade organization like the American Fence Association, would deliver more search value than dozens of the links Innova Fence is collecting. This is a standing recommendation that applies directly given the gap in link profile quality visible right now.
