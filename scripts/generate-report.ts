@@ -152,24 +152,60 @@ Tone: confident, direct, no fluff. No emojis. No em dashes (use periods, commas,
 
 Structure:
 1. Executive Summary (2 to 4 bullet points, what this competitor did this week and what to do about it)
-2. New Pages Built by ${competitor.name} (list URLs and infer what they're targeting based on URL slugs, for example service pages like "iron-fence-installation", neighborhood/city pages like "wrought-iron-gates-naperville", project type pages, gallery pages, blog posts on topics like fence painting, gate repair, custom railings)
+2. New Pages Built by ${competitor.name} (list the actual URLs and describe what they're targeting, strictly based on what the URL slug says)
 3. Backlink Movements (only if CSV data is provided for this competitor)
 4. Keyword and Ranking Changes (only if CSV data is provided for this competitor)
 5. Recommended Actions for Americana Iron Works (numbered list, specific moves to make this week in response to ${competitor.name}'s activity)
 
-CRITICAL RULE FOR RECOMMENDATIONS:
-Before recommending that Americana Iron Works build any new page (service page, neighborhood/city page, project gallery page, FAQ, blog topic, etc.), you MUST cross-reference the "americanaExistingPages" list in the data payload. That list contains every content URL path that currently exists on americanafence.com.
+=========================================
+STRICT ACCURACY RULES (NON-NEGOTIABLE)
+=========================================
 
-- If Americana ALREADY has an equivalent page, do NOT recommend building it. Instead, you may recommend updating, expanding, or strengthening that existing page (and reference the existing URL).
-- If Americana does NOT have an equivalent page, you may recommend building it as a genuine content gap.
-- When in doubt, search the list for keywords (e.g., a Chicago neighborhood or suburb name like "naperville" or "evanston", a service like "wrought-iron-fence" or "fence-painting", or a project type like "spiral-staircase") to check before suggesting a new build.
-- Acceptable equivalence checks: URL path contains the location/service AND the intent. Slight wording differences are fine (e.g., "iron-fence-installation" vs "wrought-iron-fence-install").
+RULE 1: ONLY DESCRIBE COMPETITOR PAGES THAT ACTUALLY EXIST IN THE DATA
+- Every URL you list under "New Pages Built" MUST appear verbatim in the "sitemapDiff.newUrls" array of the data payload. Do not paraphrase URLs, do not invent URLs, do not assume URLs exist based on competitor patterns.
+- When describing what a page targets, stay strictly grounded in the URL slug. If the slug is "/wrought-iron-fence-naperville", you may say it targets "wrought iron fence in Naperville". Do not extrapolate (e.g., do not say "with a focus on residential customers" unless that intent is literally in the slug).
+- If the slug is ambiguous (e.g., "/services/", "/page-12345", a numeric ID, or a generic slug like "/blog/"), say "URL slug is too generic to determine intent" rather than guessing. Better to say nothing than to invent a target keyword.
+- Do not group competitor pages into themes unless 3+ URLs literally share the theme keyword in their slug. If only one or two URLs touch a topic, list them individually without manufacturing a "trend".
 
-Focus areas relevant to Americana's SEO: wrought iron fence installation, custom iron gates (driveway, walk, security), iron railings, fire escapes and structural steel, fence repair and painting, chain link and aluminum fences, commercial fencing, residential fencing, ornamental ironwork, spiral staircases, balconies, Chicago neighborhood and suburb service-area pages, and project galleries.
+RULE 2: ONLY RECOMMEND PAGES THAT MEET ALL THREE TESTS
+Before adding any "build a new page" recommendation, verify ALL THREE of the following. If any one fails, do NOT recommend the build (you may instead recommend updating an existing page, or skip the recommendation entirely).
 
-Ignore individual product SKU pages or thin tag/category archive pages. Focus on indexable service pages, location pages, gallery / project case studies, blog posts, and resource pages.
+  TEST A. NOT ALREADY BUILT
+  Search "americanaExistingPages" for the topic. Use partial-string matching on the location, service, and project type. If any existing path covers the same intent (e.g., the same suburb + same service, the same project type, the same blog topic), the page is already built. Slight wording differences count as a match (e.g., "/wrought-iron-fence-installation-naperville" matches an intent of "wrought iron fence in Naperville").
 
-Skip sections where there is no data. Do not invent data. Never recommend a page Americana already has. Keep this report focused and specific to ${competitor.name} only, do not discuss other competitors.`;
+  TEST B. ALIGNS WITH AMERICANA'S ACTUAL SERVICE OFFERINGS
+  Americana's services are defined by the patterns visible in "americanaExistingPages". Their core offerings are:
+    - Wrought iron and ornamental iron fences (residential and commercial)
+    - Custom iron gates (driveway, walk, security, automated)
+    - Iron railings (interior, exterior, balcony, stair)
+    - Fire escapes and structural steel
+    - Fence installation, repair, and painting
+    - Chain link and aluminum fences
+    - Spiral staircases, custom metalwork, ornamental ironwork
+    - Service to Chicago and surrounding Illinois suburbs
+
+  Before recommending any page, confirm the underlying service or topic is something Americana actually does. If it isn't (for example, vinyl fence installation, wood fence staining, garage door services, HVAC, landscaping, pool fencing if no existing pool-fence page exists), DO NOT recommend it. Stay inside Americana's lane.
+
+  Service-area pages must be for Chicago or its Illinois suburbs (e.g., Naperville, Evanston, Oak Park, Schaumburg, Aurora, Joliet, Wheaton, Arlington Heights, Skokie, Cicero, Berwyn). Do NOT recommend service-area pages for cities outside Chicagoland (e.g., Milwaukee, Indianapolis, Detroit) even if the competitor targets them.
+
+  TEST C. THE COMPETITOR'S ACTIVITY THIS WEEK ACTUALLY MOTIVATES IT
+  The recommendation must be a direct response to something in this week's data (a specific new URL the competitor built, a specific keyword they're now ranking for, a specific backlink they earned). Cite that trigger in the recommendation. Do not pad the list with generic SEO advice that has no link to the data.
+
+RULE 3: PHRASING REQUIREMENTS FOR RECOMMENDATIONS
+- For each recommendation, follow this exact pattern: "[Action]. Trigger: [what the competitor did this week]. Why this fits Americana: [the existing service or page this builds on]."
+- If you are recommending an UPDATE to an existing page, cite the existing path from americanaExistingPages verbatim.
+- If you are recommending a NEW page, state the proposed URL slug and confirm in one short clause that you checked americanaExistingPages and the slug does not already exist.
+- Recommendations must be specific. "Build out more service-area pages" is too vague. "Build /wrought-iron-fence-evanston, since competitor X just published their Evanston fence page and Americana has no Evanston-specific page" is specific.
+
+RULE 4: WHEN UNCERTAIN, SKIP
+- If you cannot confirm the competitor URL is real, omit it from the report.
+- If you cannot confirm Americana offers the service, omit the recommendation.
+- If you cannot confirm Americana doesn't already have the page, omit the recommendation.
+- A shorter, accurate report is better than a longer, padded one. Sections with no real data should say "No notable activity this week" and stop.
+
+=========================================
+
+Skip sections where there is no data. Do not invent data, URLs, keywords, or page intents. Never recommend a page Americana already has. Never recommend a page outside Americana's actual service offerings. Keep this report focused and specific to ${competitor.name} only, do not discuss other competitors.`;
 
   const isBaselineRun = diff !== null && previousDate === null;
   const baselineNote = isBaselineRun
