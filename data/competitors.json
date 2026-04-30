@@ -1,3 +1,12 @@
 {
-  "competitors": []
+  "competitors": [
+    {
+      "id": "innovafence-com",
+      "name": "Innova Fence",
+      "domain": "https://innovafence.com/",
+      "sitemapUrl": "https://innovafence.com/sitemap.xml",
+      "addedAt": "2026-04-30",
+      "active": true
+    }
+  ]
 }
