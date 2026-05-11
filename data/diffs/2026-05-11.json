@@ -1,0 +1,40 @@
+{
+  "date": "2026-05-11",
+  "previousDate": "2026-05-04",
+  "diffs": [
+    {
+      "competitorId": "innovafence-com",
+      "newUrls": [],
+      "removedUrls": [],
+      "updatedUrls": []
+    },
+    {
+      "competitorId": "paintersinc-net",
+      "newUrls": [
+        {
+          "url": "https://paintersinc.net/facility-maintenance-painting/",
+          "lastmod": "2026-05-08T13:20:18+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/commercial-painting-contractors-lisle-il/",
+          "lastmod": "2026-05-08T15:02:43+00:00"
+        }
+      ],
+      "removedUrls": [],
+      "updatedUrls": [
+        {
+          "url": "https://paintersinc.net/blog/",
+          "lastmod": "2026-05-08T14:18:42+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/blog/commercial-painting-maintenance/",
+          "lastmod": "2026-05-08T14:18:42+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/commercial-painting-contractors-west-chicago-il/",
+          "lastmod": "2026-05-08T15:02:51+00:00"
+        }
+      ]
+    }
+  ]
+}
