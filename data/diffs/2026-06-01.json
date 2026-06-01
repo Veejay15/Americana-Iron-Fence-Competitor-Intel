@@ -1,0 +1,27 @@
+{
+  "date": "2026-06-01",
+  "previousDate": "2026-05-25",
+  "diffs": [
+    {
+      "competitorId": "innovafence-com",
+      "newUrls": [],
+      "removedUrls": [],
+      "updatedUrls": []
+    },
+    {
+      "competitorId": "paintersinc-net",
+      "newUrls": [],
+      "removedUrls": [],
+      "updatedUrls": [
+        {
+          "url": "https://paintersinc.net/parking-garage-painting/",
+          "lastmod": "2026-05-26T14:31:29+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/office-painting/",
+          "lastmod": "2026-05-26T14:32:18+00:00"
+        }
+      ]
+    }
+  ]
+}
