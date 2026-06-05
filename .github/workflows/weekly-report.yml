@@ -56,7 +56,13 @@ jobs:
         if: steps.check.outputs.skip != 'true'
         run: npm run diff:sitemaps
 
-      - name: Process uploaded SEMrush CSVs
+      - name: Fetch SE Ranking keyword data
+        if: steps.check.outputs.skip != 'true'
+        env:
+          SE_RANKING_API_KEY: ${{ secrets.SE_RANKING_API_KEY }}
+        run: npm run fetch:seranking
+
+      - name: Process uploaded SEMrush CSVs (optional)
         if: steps.check.outputs.skip != 'true'
         run: npm run process:csvs
 

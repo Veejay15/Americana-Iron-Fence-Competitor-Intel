@@ -37,6 +37,26 @@ interface CsvSummariesData {
   summaries: CsvSummary[];
 }
 
+interface SerankingKeyword {
+  keyword: string;
+  volume: number;
+  difficulty: number;
+  cpc: number;
+  intents: string[];
+  serp_features: string[];
+}
+interface SerankingSummary {
+  competitorId: string;
+  type: 'keyword-research';
+  seedKeywords: string[];
+  totalKeywordsFound: number;
+  topRows: SerankingKeyword[];
+}
+interface SerankingSummariesData {
+  date: string;
+  summaries: SerankingSummary[];
+}
+
 function loadDiffs(): DiffData | null {
   const p = path.join(ROOT, 'data', 'diffs', `${TODAY}.json`);
   if (!fs.existsSync(p)) return null;
@@ -45,6 +65,12 @@ function loadDiffs(): DiffData | null {
 
 function loadCsvSummaries(): CsvSummariesData | null {
   const p = path.join(ROOT, 'data', 'csv-summaries', `${TODAY}.json`);
+  if (!fs.existsSync(p)) return null;
+  return JSON.parse(fs.readFileSync(p, 'utf-8'));
+}
+
+function loadSerankingSummaries(): SerankingSummariesData | null {
+  const p = path.join(ROOT, 'data', 'seranking-summaries', `${TODAY}.json`);
   if (!fs.existsSync(p)) return null;
   return JSON.parse(fs.readFileSync(p, 'utf-8'));
 }
@@ -121,11 +147,14 @@ function trimCsvs(csvs: CsvSummary[]): CsvSummary[] {
   }));
 }
 
+const MAX_SERANKING_KEYWORDS = 30;
+
 async function generateForCompetitor(
   client: Anthropic,
   competitor: Competitor,
   diff: CompetitorDiff | null,
   csvs: CsvSummary[],
+  serankingKeywords: SerankingKeyword[],
   americanaPages: string[],
   previousDate: string | null
 ): Promise<{ markdown: string; inputTokens: number; outputTokens: number }> {
@@ -142,6 +171,11 @@ async function generateForCompetitor(
     sitemapDiff: diff ? trimmed : { newUrls: [], removedUrls: [], updatedUrls: [] },
     sitemapDiffTotals: diff ? meta : null,
     csvData: trimCsvs(csvs),
+    // SE Ranking keyword landscape: top keywords by volume for this competitor's
+    // service area. Not the competitor's specific rankings -- use this to
+    // quantify the search opportunity behind any page the competitor built this
+    // week, and to support "Recommended Actions" with real volume numbers.
+    serankingKeywords: serankingKeywords.slice(0, MAX_SERANKING_KEYWORDS),
   };
 
   const systemPrompt = `You are a senior SEO analyst writing a weekly competitor intelligence report that will be read directly by the owner of Americana Iron Works (americanafence.com), a Chicago-based custom iron works and fence company serving residential and commercial clients across Chicago and the surrounding suburbs. The reader is a fence and ironwork business owner, not a data analyst, not a developer, not an SEO consultant.
@@ -182,9 +216,21 @@ Tone: confident, direct, no fluff. No emojis. No em dashes (use periods, commas,
 Structure:
 1. Executive Summary (2 to 4 bullet points, what this competitor did this week and what to do about it)
 2. New Pages Built by ${competitor.name} (list the actual URLs and describe what they're targeting, strictly based on what the URL slug says)
-3. Backlink Movements (only if CSV data is provided for this competitor)
-4. Keyword and Ranking Changes (only if CSV data is provided for this competitor)
+3. Backlink Movements (only if CSV data of type "backlinks" is provided for this competitor; skip if absent)
+4. Keyword and Ranking Changes (only if CSV data of type "positions" is provided for this competitor; skip if absent)
 5. Recommended Actions for Americana Iron Works (numbered list, specific moves to make this week in response to ${competitor.name}'s activity)
+
+=========================================
+SE RANKING KEYWORD DATA (serankingKeywords)
+=========================================
+The "serankingKeywords" array in the data payload contains keyword research data for this competitor's service area, pulled automatically from SE Ranking. This is market-level keyword data, NOT the competitor's specific rankings. Use it as follows:
+
+- When ${competitor.name} publishes a new page this week, check if the page's topic matches any keyword in serankingKeywords with volume > 200. If so, add the search volume to the recommendation ("this keyword gets X searches/month") to quantify the opportunity for Americana.
+- When recommending a new page for Americana, if there is a matching keyword in serankingKeywords with volume > 200 and difficulty < 40, cite it: "Build /slug -- the keyword 'X' gets Y searches/month with low competition."
+- Do NOT write a standalone "Keyword Landscape" section. This data feeds into Recommendations only.
+- Do NOT say "according to SE Ranking" or mention any tool name. Just say "this keyword gets about X searches a month" or "this is a low-competition topic with around X monthly searches."
+- Volume and difficulty numbers from serankingKeywords are US national. For a local business in Chicago, actual local volume is a fraction (roughly 1-5% of national). Adjust your language: "nationally about 1,900 searches/month" or "a solid volume keyword" rather than implying those searches are all Chicago-local.
+- If serankingKeywords is empty or absent, skip any volume references in Recommendations.
 
 =========================================
 STRICT ACCURACY RULES (NON-NEGOTIABLE)
@@ -241,11 +287,16 @@ Skip sections where there is no data. Do not invent data, URLs, keywords, or pag
     ? `(This is a baseline run with no previous sitemap snapshot, so every indexed URL appears as "new". Treat the sitemapDiff as a snapshot of ${competitor.name}'s current content footprint, not as activity from the last week. The "sitemapDiffTotals" object shows full counts; the URL arrays are sampled to the most relevant entries.)`
     : '';
 
+  const serankingNote = serankingKeywords.length > 0
+    ? `(SE Ranking keyword data is included: ${serankingKeywords.length} market keywords for this competitor's service area. Use volumes to quantify recommendations only -- see system prompt instructions.)`
+    : '(No SE Ranking keyword data available for this competitor this week.)';
+
   const userPrompt = `Here is this week's data for ${competitor.name} for the report dated ${TODAY}.
 
 ${diff ? '' : '(No sitemap diff available for this competitor this week.)'}
 ${baselineNote}
 ${csvs.length === 0 ? '(No Semrush CSV data uploaded for this competitor this week.)' : ''}
+${serankingNote}
 ${americanaPages.length === 0 ? '(Warning: could not fetch Americana existing pages this run. Be extra careful recommending new pages.)' : `(Americana's existing ${americanaPages.length} content pages are listed in "americanaExistingPages" for cross-reference.)`}
 
 DATA:
@@ -286,10 +337,11 @@ async function main() {
 
   const diffs = loadDiffs();
   const csvSummaries = loadCsvSummaries();
+  const serankingSummaries = loadSerankingSummaries();
   const americanaPages = await fetchAmericanaPages();
 
-  if (!diffs && !csvSummaries) {
-    console.log('No data to report on. Run fetch-sitemaps and process-csvs first.');
+  if (!diffs && !csvSummaries && !serankingSummaries) {
+    console.log('No data to report on. Run fetch-sitemaps, diff-sitemaps, and fetch-seranking first.');
     process.exit(0);
   }
 
@@ -306,6 +358,8 @@ async function main() {
     console.log(`\nGenerating report for ${competitor.name}...`);
     const diff = diffs?.diffs.find((d) => d.competitorId === competitor.id) || null;
     const csvs = csvSummaries?.summaries.filter((s) => s.competitorId === competitor.id) || [];
+    const serankingData = serankingSummaries?.summaries.find((s) => s.competitorId === competitor.id);
+    const serankingKeywords = serankingData?.topRows ?? [];
 
     try {
       const result = await generateForCompetitor(
@@ -313,6 +367,7 @@ async function main() {
         competitor,
         diff,
         csvs,
+        serankingKeywords,
         americanaPages,
         diffs?.previousDate || null
       );

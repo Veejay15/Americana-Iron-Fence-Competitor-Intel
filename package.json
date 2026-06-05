@@ -10,8 +10,9 @@
     "fetch:sitemaps": "tsx scripts/fetch-sitemaps.ts",
     "diff:sitemaps": "tsx scripts/diff-sitemaps.ts",
     "process:csvs": "tsx scripts/process-csvs.ts",
+    "fetch:seranking": "tsx scripts/fetch-seranking.ts",
     "report:generate": "tsx scripts/generate-report.ts",
-    "report:weekly": "npm run fetch:sitemaps && npm run diff:sitemaps && npm run process:csvs && npm run report:generate"
+    "report:weekly": "npm run fetch:sitemaps && npm run diff:sitemaps && npm run fetch:seranking && npm run process:csvs && npm run report:generate"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.90.0",
