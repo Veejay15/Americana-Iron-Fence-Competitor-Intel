@@ -15,6 +15,14 @@
       "sitemapUrl": "https://paintersinc.net/sitemap.xml",
       "addedAt": "2026-04-30",
       "active": true
+    },
+    {
+      "id": "www-floresfencecompany-com",
+      "name": "Flores Fence",
+      "domain": "https://www.floresfencecompany.com/",
+      "sitemapUrl": "https://www.floresfencecompany.com/sitemap.xml",
+      "addedAt": "2026-06-05",
+      "active": true
     }
   ]
 }
