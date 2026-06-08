@@ -1,0 +1,907 @@
+{
+  "date": "2026-06-08",
+  "summaries": [
+    {
+      "competitorId": "innovafence-com",
+      "competitorDomain": "https://innovafence.com/",
+      "type": "keyword-research",
+      "fetchedAt": "2026-06-08T13:08:18.821Z",
+      "seedKeywords": [
+        "Innova Fence"
+      ],
+      "totalKeywordsFound": 1,
+      "topRows": [
+        {
+          "keyword": "innova fences",
+          "volume": 90,
+          "difficulty": 9,
+          "cpc": 3.01,
+          "intents": [
+            "L",
+            "N"
+          ],
+          "serp_features": [
+            "reviews",
+            "sitelinks",
+            "people_also_ask",
+            "gmb",
+            "related_searches"
+          ]
+        }
+      ]
+    },
+    {
+      "competitorId": "paintersinc-net",
+      "competitorDomain": "https://paintersinc.net/",
+      "type": "keyword-research",
+      "fetchedAt": "2026-06-08T13:08:30.769Z",
+      "seedKeywords": [
+        "Trusted Commercial Painting Company Chicago Area",
+        "Commercial painting",
+        "Condo &amp; HOA painting"
+      ],
+      "totalKeywordsFound": 188,
+      "topRows": [
+        {
+          "keyword": "painting company near me",
+          "volume": 60500,
+          "difficulty": 52,
+          "cpc": 6.59,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "painting company",
+          "volume": 33100,
+          "difficulty": 45,
+          "cpc": 1.94,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "images",
+            "bads",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "exterior painting contractors",
+          "volume": 14800,
+          "difficulty": 45,
+          "cpc": 4.82,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "images",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "interior house painters",
+          "volume": 14800,
+          "difficulty": 62,
+          "cpc": 6.02,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "images"
+          ]
+        },
+        {
+          "keyword": "painting companies",
+          "volume": 12100,
+          "difficulty": 46,
+          "cpc": 1.94,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "images",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "interior painters near me",
+          "volume": 12100,
+          "difficulty": 60,
+          "cpc": 6.32,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "exterior painting contractor",
+          "volume": 9900,
+          "difficulty": 43,
+          "cpc": 4.82,
+          "intents": [
+            "I"
+          ],
+          "serp_features": [
+            "reviews",
+            "video",
+            "images",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "interior painting near me",
+          "volume": 9900,
+          "difficulty": 47,
+          "cpc": 5.6,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "bads",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "paint company",
+          "volume": 8000,
+          "difficulty": 35,
+          "cpc": 1.94,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "images",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "residential painters",
+          "volume": 8000,
+          "difficulty": 36,
+          "cpc": 6.3,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "commercial painting company",
+          "volume": 6600,
+          "difficulty": 31,
+          "cpc": 9.47,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "exterior house painters near me",
+          "volume": 6600,
+          "difficulty": 39,
+          "cpc": 6.74,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "commercial painter",
+          "volume": 5700,
+          "difficulty": 50,
+          "cpc": 7.19,
+          "intents": [
+            "I"
+          ],
+          "serp_features": [
+            "reviews",
+            "video",
+            "people_also_ask",
+            "images",
+            "sge",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "painting service",
+          "volume": 5700,
+          "difficulty": 36,
+          "cpc": 7.63,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "images",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "residential painting",
+          "volume": 5700,
+          "difficulty": 31,
+          "cpc": 6.3,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "images",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "wall painters",
+          "volume": 4400,
+          "difficulty": 45,
+          "cpc": 0.21,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "images",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "exterior painting near me",
+          "volume": 4400,
+          "difficulty": 35,
+          "cpc": 6.65,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "commercial painters",
+          "volume": 3600,
+          "difficulty": 41,
+          "cpc": 7.19,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "images",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "residential painting company",
+          "volume": 3600,
+          "difficulty": 39,
+          "cpc": 4.81,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "industrial painting",
+          "volume": 2900,
+          "difficulty": 42,
+          "cpc": 1.59,
+          "intents": [
+            "I"
+          ],
+          "serp_features": [
+            "reviews",
+            "video",
+            "images",
+            "sge"
+          ]
+        },
+        {
+          "keyword": "paint contractors near me",
+          "volume": 2900,
+          "difficulty": 37,
+          "cpc": 5.93,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "paint commercial",
+          "volume": 2400,
+          "difficulty": 75,
+          "cpc": 7.19,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "video",
+            "images",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "paint companies",
+          "volume": 2400,
+          "difficulty": 51,
+          "cpc": 1.94,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "images",
+            "sge",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "professional painters",
+          "volume": 2400,
+          "difficulty": 36,
+          "cpc": 3.19,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "images",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "professional painting",
+          "volume": 2400,
+          "difficulty": 38,
+          "cpc": 3.19,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "images",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "paint companies near me",
+          "volume": 2400,
+          "difficulty": 40,
+          "cpc": 6.59,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "residential painting services",
+          "volume": 1900,
+          "difficulty": 40,
+          "cpc": 3.76,
+          "intents": [
+            "I"
+          ],
+          "serp_features": [
+            "reviews",
+            "video",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "painter near by me",
+          "volume": 1900,
+          "difficulty": 50,
+          "cpc": 5.6,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "people_also_ask",
+            "images",
+            "related_searches",
+            "image_in_block"
+          ]
+        },
+        {
+          "keyword": "residential painter near me",
+          "volume": 1900,
+          "difficulty": 39,
+          "cpc": 5.6,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "commercial painting contractors",
+          "volume": 1800,
+          "difficulty": 31,
+          "cpc": 11.46,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "interior and exterior painting",
+          "volume": 1800,
+          "difficulty": 38,
+          "cpc": 0.77,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "professional painters near me",
+          "volume": 1800,
+          "difficulty": 47,
+          "cpc": 6.37,
+          "intents": [
+            "I"
+          ],
+          "serp_features": [
+            "reviews",
+            "video",
+            "people_also_ask",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "painting contractor near me",
+          "volume": 1600,
+          "difficulty": 42,
+          "cpc": 5.93,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "commercial painting contractors near me",
+          "volume": 1500,
+          "difficulty": 27,
+          "cpc": 11.38,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "painters in my area",
+          "volume": 1500,
+          "difficulty": 47,
+          "cpc": 4.56,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "commercial painting companies",
+          "volume": 1300,
+          "difficulty": 0,
+          "cpc": 9.47,
+          "intents": [
+            "I"
+          ],
+          "serp_features": []
+        },
+        {
+          "keyword": "interior painting contractors",
+          "volume": 1300,
+          "difficulty": 35,
+          "cpc": 4.92,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "images",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "exterior painters",
+          "volume": 1100,
+          "difficulty": 41,
+          "cpc": 0.2,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "images",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "home painting contractors near me",
+          "volume": 1000,
+          "difficulty": 42,
+          "cpc": 6.59,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "bads",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "professional painter",
+          "volume": 990,
+          "difficulty": 15,
+          "cpc": 3.19,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "images",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "professional painting services",
+          "volume": 910,
+          "difficulty": 17,
+          "cpc": 6.09,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "images",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "commercial paint",
+          "volume": 880,
+          "difficulty": 23,
+          "cpc": 7.19,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "images"
+          ]
+        },
+        {
+          "keyword": "industrial painters",
+          "volume": 880,
+          "difficulty": 19,
+          "cpc": 1.59,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "images",
+            "sge",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "interior painting company",
+          "volume": 880,
+          "difficulty": 15,
+          "cpc": 5.17,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "images",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "commercial painting services",
+          "volume": 810,
+          "difficulty": 13,
+          "cpc": 8.35,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "home painters",
+          "volume": 810,
+          "difficulty": 18,
+          "cpc": 1.44,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "images",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "interior painting service",
+          "volume": 810,
+          "difficulty": 16,
+          "cpc": 7.25,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "images",
+            "bads",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "interior painter near me",
+          "volume": 810,
+          "difficulty": 16,
+          "cpc": 5.6,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "paint services",
+          "volume": 720,
+          "difficulty": 24,
+          "cpc": 7.63,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "people_also_ask",
+            "bads",
+            "related_searches"
+          ]
+        },
+        {
+          "keyword": "painting and staining",
+          "volume": 660,
+          "difficulty": 20,
+          "cpc": 0.32,
+          "intents": [
+            "L",
+            "C"
+          ],
+          "serp_features": [
+            "local_pack",
+            "reviews",
+            "video",
+            "images",
+            "related_searches"
+          ]
+        }
+      ]
+    },
+    {
+      "competitorId": "www-floresfencecompany-com",
+      "competitorDomain": "https://www.floresfencecompany.com/",
+      "type": "keyword-research",
+      "fetchedAt": "2026-06-08T13:08:33.389Z",
+      "seedKeywords": [
+        "Flores Fence Company"
+      ],
+      "totalKeywordsFound": 0,
+      "topRows": []
+    }
+  ]
+}
