@@ -56,15 +56,16 @@ jobs:
         if: steps.check.outputs.skip != 'true'
         run: npm run diff:sitemaps
 
-      - name: Fetch SE Ranking keyword data
-        if: steps.check.outputs.skip != 'true'
-        env:
-          SE_RANKING_API_KEY: ${{ secrets.SE_RANKING_API_KEY }}
-        run: npm run fetch:seranking
-
       - name: Process uploaded SEMrush CSVs (optional)
         if: steps.check.outputs.skip != 'true'
         run: npm run process:csvs
+
+      - name: Fetch SE Ranking keyword and backlink data
+        if: steps.check.outputs.skip != 'true'
+        env:
+          SE_RANKING_API_KEY: ${{ secrets.SE_RANKING_API_KEY }}
+          SE_RANKING_COUNTRY: ${{ vars.SE_RANKING_COUNTRY }}
+        run: npm run fetch:seranking
 
       - name: Generate report with Claude
         if: steps.check.outputs.skip != 'true'
@@ -99,7 +100,6 @@ jobs:
             fi
             echo "Push failed on attempt $attempt"
             if [ $attempt -lt 5 ]; then
-              # Pull any new commits before retrying (rebase to keep our commit on top)
               git pull --rebase || true
               sleep $((attempt * 10))
             fi

@@ -18,6 +18,9 @@ interface CompetitorDiff {
   newUrls: DiffEntry[];
   removedUrls: DiffEntry[];
   updatedUrls: DiffEntry[];
+  fetchError?: string;
+  isBaseline?: boolean;
+  totalCurrentUrls?: number;
 }
 interface DiffData {
   date: string;
@@ -37,26 +40,6 @@ interface CsvSummariesData {
   summaries: CsvSummary[];
 }
 
-interface SerankingKeyword {
-  keyword: string;
-  volume: number;
-  difficulty: number;
-  cpc: number;
-  intents: string[];
-  serp_features: string[];
-}
-interface SerankingSummary {
-  competitorId: string;
-  type: 'keyword-research';
-  seedKeywords: string[];
-  totalKeywordsFound: number;
-  topRows: SerankingKeyword[];
-}
-interface SerankingSummariesData {
-  date: string;
-  summaries: SerankingSummary[];
-}
-
 function loadDiffs(): DiffData | null {
   const p = path.join(ROOT, 'data', 'diffs', `${TODAY}.json`);
   if (!fs.existsSync(p)) return null;
@@ -65,12 +48,6 @@ function loadDiffs(): DiffData | null {
 
 function loadCsvSummaries(): CsvSummariesData | null {
   const p = path.join(ROOT, 'data', 'csv-summaries', `${TODAY}.json`);
-  if (!fs.existsSync(p)) return null;
-  return JSON.parse(fs.readFileSync(p, 'utf-8'));
-}
-
-function loadSerankingSummaries(): SerankingSummariesData | null {
-  const p = path.join(ROOT, 'data', 'seranking-summaries', `${TODAY}.json`);
   if (!fs.existsSync(p)) return null;
   return JSON.parse(fs.readFileSync(p, 'utf-8'));
 }
@@ -105,15 +82,11 @@ async function fetchAmericanaPages(): Promise<string[]> {
   }
 }
 
-// Caps to keep the prompt under Claude's 1M-token limit. The first weekly run
-// has no previous snapshot, so every URL becomes a "new" URL; large competitor
-// sites can produce thousands of entries on their own.
+// Caps to keep the prompt under Claude's 1M-token limit.
 const MAX_NEW_URLS = 150;
 const MAX_UPDATED_URLS = 75;
 const MAX_REMOVED_URLS = 75;
 const MAX_CSV_ROWS = 15;
-// Semrush backlinks "Text" column can carry kilobytes of scraped HTML per row.
-// Drop fields that bloat the payload without helping the analysis.
 const CSV_FIELDS_TO_DROP = new Set(['Text', 'Frame', 'Form', 'Image', 'Sitewide']);
 
 function trimDiff(diff: CompetitorDiff | null): { trimmed: CompetitorDiff; meta: Record<string, number> } {
@@ -147,17 +120,16 @@ function trimCsvs(csvs: CsvSummary[]): CsvSummary[] {
   }));
 }
 
-const MAX_SERANKING_KEYWORDS = 30;
-
 async function generateForCompetitor(
   client: Anthropic,
   competitor: Competitor,
   diff: CompetitorDiff | null,
   csvs: CsvSummary[],
-  serankingKeywords: SerankingKeyword[],
   americanaPages: string[],
   previousDate: string | null
 ): Promise<{ markdown: string; inputTokens: number; outputTokens: number }> {
+  const sitemapFetchError = diff?.fetchError;
+  const isBaseline = !!diff?.isBaseline;
   const { trimmed, meta } = trimDiff(diff);
   const dataPayload = {
     date: TODAY,
@@ -170,12 +142,12 @@ async function generateForCompetitor(
     americanaExistingPages: americanaPages,
     sitemapDiff: diff ? trimmed : { newUrls: [], removedUrls: [], updatedUrls: [] },
     sitemapDiffTotals: diff ? meta : null,
+    sitemapFetchStatus: sitemapFetchError
+      ? { ok: false, error: sitemapFetchError }
+      : diff
+      ? { ok: true, isBaseline, totalCurrentUrls: diff.totalCurrentUrls }
+      : { ok: false, error: 'No sitemap snapshot was produced this week.' },
     csvData: trimCsvs(csvs),
-    // SE Ranking keyword landscape: top keywords by volume for this competitor's
-    // service area. Not the competitor's specific rankings -- use this to
-    // quantify the search opportunity behind any page the competitor built this
-    // week, and to support "Recommended Actions" with real volume numbers.
-    serankingKeywords: serankingKeywords.slice(0, MAX_SERANKING_KEYWORDS),
   };
 
   const systemPrompt = `You are a senior SEO analyst writing a weekly competitor intelligence report that will be read directly by the owner of Americana Iron Works (americanafence.com), a Chicago-based custom iron works and fence company serving residential and commercial clients across Chicago and the surrounding suburbs. The reader is a fence and ironwork business owner, not a data analyst, not a developer, not an SEO consultant.
@@ -191,14 +163,12 @@ DO NOT reference the underlying data structure or how you received the informati
 - "the sampled data", "in the sample", "the sample shows", "based on the sampled rows"
 - "the CSV", "the data payload", "the input", "the data shows"
 - "rows", "columns", "fields", "the dataset"
-- raw column names like "New link", "Last seen", "Trust Score", "Page AS", "Position", "Traffic %" (translate them into plain English instead)
+- raw column names like "New link", "Last seen", "Trust Score", "Page AS", "Position", "Traffic %", "pos_change_direction", "bl_change_kind", "record_kind"
 - "flagged as", "marked as new", "classified as"
 - "according to the data", "per the data provided", "from what we can see in the data"
 - numeric IDs, JSON-style references, or anything that sounds like you are quoting a spreadsheet
 
 DO translate everything into plain business English:
-- Instead of "1,141 total links in the backlink CSV", write "${competitor.name}'s site has built up roughly 1,100 backlinks over time"
-- Instead of "No links in the sampled data are flagged as new this period", write "${competitor.name} did not earn any new backlinks this week"
 - Instead of "Position changes show 47 new keywords ranking", write "${competitor.name} started ranking for 47 new keywords this week"
 - Instead of "Sitemap diff shows 3 new URLs", write "${competitor.name} published 3 new pages this week"
 
@@ -209,47 +179,54 @@ If a section has no notable activity, say it the way a colleague would say it ou
 - "No new backlinks worth flagging this week."
 - "Their keyword rankings stayed flat this week, no big moves."
 
-Never apologize for missing data, never explain that "the sample is limited" or "more data would be needed". The owner just wants to know what happened and what to do about it.
-
-Tone: confident, direct, no fluff. No emojis. No em dashes (use periods, commas, parentheses, or "and/but" instead). Read every sentence back and ask "would a fence business owner understand this without Googling anything?". If not, rewrite it.
+Tone: confident, direct, no fluff. No emojis. No em dashes (use periods, commas, parentheses, or "and/but" instead).
 
 Structure:
 1. Executive Summary (2 to 4 bullet points, what this competitor did this week and what to do about it)
-2. New Pages Built by ${competitor.name} (list the actual URLs and describe what they're targeting, strictly based on what the URL slug says)
-3. Backlink Movements (only if CSV data of type "backlinks" is provided for this competitor; skip if absent)
-4. Keyword and Ranking Changes (only if CSV data of type "positions" is provided for this competitor; skip if absent)
-5. Recommended Actions for Americana Iron Works (numbered list, specific moves to make this week in response to ${competitor.name}'s activity)
+2. New Pages Built by ${competitor.name}
+3. Backlink Movements
+4. Keyword and Ranking Changes
+5. Recommended Actions for Americana Iron Works
 
 =========================================
-SE RANKING KEYWORD DATA (serankingKeywords)
+SECTION 3: BACKLINK MOVEMENTS
 =========================================
-The "serankingKeywords" array in the data payload contains keyword research data for this competitor's service area, pulled automatically from SE Ranking. This is market-level keyword data, NOT the competitor's specific rankings. Use it as follows:
-
-- When ${competitor.name} publishes a new page this week, check if the page's topic matches any keyword in serankingKeywords with volume > 200. If so, add the search volume to the recommendation ("this keyword gets X searches/month") to quantify the opportunity for Americana.
-- When recommending a new page for Americana, if there is a matching keyword in serankingKeywords with volume > 200 and difficulty < 40, cite it: "Build /slug -- the keyword 'X' gets Y searches/month with low competition."
-- Do NOT write a standalone "Keyword Landscape" section. This data feeds into Recommendations only.
-- Do NOT say "according to SE Ranking" or mention any tool name. Just say "this keyword gets about X searches a month" or "this is a low-competition topic with around X monthly searches."
-- Volume and difficulty numbers from serankingKeywords are US national. For a local business in Chicago, actual local volume is a fraction (roughly 1-5% of national). Adjust your language: "nationally about 1,900 searches/month" or "a solid volume keyword" rather than implying those searches are all Chicago-local.
-- If serankingKeywords is empty or absent, skip any volume references in Recommendations.
+- If csvData has a backlinks-type entry for this competitor, summarize from the topRows. Output MUST be a markdown table (not bullets). The table MUST have these columns in this exact order: | Source Domain | Source URL | Anchor Text | Domain Authority | Followed | New/Lost |. One row per backlink, up to 15 rows max. Below the table you may add 2-3 sentences of interpretation, no more. Group "New" rows first (where bl_change_kind="new"), then "Lost" (where bl_change_kind="lost"). If a field is missing in the data, write "—" in the cell. DO NOT use bullet points for the per-link data.
+- If csvData has no backlinks-type entry: "No new backlink data this week." Do not write anything else for this section. DO NOT invent backlink domains.
 
 =========================================
-STRICT ACCURACY RULES (NON-NEGOTIABLE)
+SECTION 4: KEYWORD AND RANKING CHANGES
+=========================================
+- If csvData has a positions or keywords entry for this competitor, output MUST include markdown tables (not bullets). Produce two separate tables under bold subheadings **Notable ranking gains** and **Notable ranking declines**. Each table MUST have these columns in this exact order: | Keyword | Previous Position | Current Position | Change | Search Volume | Landing Page |. One row per keyword. Use up to 12 rows per table (biggest gains, biggest declines). Compute "Change" as (current minus previous) with a + or - sign; for rows where pos_change_direction="new" write "new" in Change and leave Previous Position as "—"; for rows where pos_change_direction="lost" write "lost" in Change and leave Current Position as "—". If the landing page is a full URL, keep the pathname only. If a field is missing, write "—". Below each table you may add 2-3 sentences of interpretation, no more. DO NOT mix bullets and tables. DO NOT use bullets for per-keyword data.
+- You may include a short Overview paragraph above the tables (1-2 lines) citing totals: total tracked keywords, new keywords, lost keywords — IF these numbers appear in the data. Do not invent them.
+- If csvData has neither positions nor keywords entries: "No keyword ranking data this week." Do not write anything else. DO NOT invent keywords or positions.
+
+=========================================
+SECTION 2: NEW PAGES BUILT
+=========================================
+ABSOLUTE GROUNDING RULE:
+You may ONLY use facts that appear in the DATA payload. You must NOT invent URLs, ranking positions, backlink domains, traffic numbers, or page slugs.
+
+If sitemapFetchStatus.ok is false, you MUST NOT write "no new pages were detected" or any phrasing that implies we looked and found nothing. Instead, state that the sitemap could not be retrieved this week (include the error from sitemapFetchStatus.error) and that new-page detection is unavailable until the fetch issue is resolved.
+
+If sitemapFetchStatus.ok is true AND sitemapFetchStatus.isBaseline is true, this is the FIRST successful sitemap snapshot. State that this is the first capture (mention totalCurrentUrls as their current site footprint), and that real week-over-week new-page detection starts next cycle. DO NOT enumerate URLs.
+
+If sitemapDiff.newUrls is empty and neither error condition applies, write that no new pages were detected this week.
+
+If sitemapDiff.newUrls has entries, list them with inferred targeting based strictly on URL slug. If the slug is ambiguous (e.g., "/page-12345", a numeric ID, "/services/"), write "URL slug is too generic to determine intent" rather than guessing.
+
+=========================================
+STRICT ACCURACY RULES FOR RECOMMENDATIONS
 =========================================
 
-RULE 1: ONLY DESCRIBE COMPETITOR PAGES THAT ACTUALLY EXIST IN THE DATA
-- Every URL you list under "New Pages Built" MUST appear verbatim in the "sitemapDiff.newUrls" array of the data payload. Do not paraphrase URLs, do not invent URLs, do not assume URLs exist based on competitor patterns.
-- When describing what a page targets, stay strictly grounded in the URL slug. If the slug is "/wrought-iron-fence-naperville", you may say it targets "wrought iron fence in Naperville". Do not extrapolate (e.g., do not say "with a focus on residential customers" unless that intent is literally in the slug).
-- If the slug is ambiguous (e.g., "/services/", "/page-12345", a numeric ID, or a generic slug like "/blog/"), say "URL slug is too generic to determine intent" rather than guessing. Better to say nothing than to invent a target keyword.
-- Do not group competitor pages into themes unless 3+ URLs literally share the theme keyword in their slug. If only one or two URLs touch a topic, list them individually without manufacturing a "trend".
-
-RULE 2: ONLY RECOMMEND PAGES THAT MEET ALL THREE TESTS
-Before adding any "build a new page" recommendation, verify ALL THREE of the following. If any one fails, do NOT recommend the build (you may instead recommend updating an existing page, or skip the recommendation entirely).
+RULE 1: ONLY RECOMMEND PAGES THAT MEET ALL THREE TESTS
+Before adding any "build a new page" recommendation, verify ALL THREE:
 
   TEST A. NOT ALREADY BUILT
-  Search "americanaExistingPages" for the topic. Use partial-string matching on the location, service, and project type. If any existing path covers the same intent (e.g., the same suburb + same service, the same project type, the same blog topic), the page is already built. Slight wording differences count as a match (e.g., "/wrought-iron-fence-installation-naperville" matches an intent of "wrought iron fence in Naperville").
+  Search "americanaExistingPages" for the topic. If any existing path covers the same intent, the page already exists. Recommend updating it instead.
 
   TEST B. ALIGNS WITH AMERICANA'S ACTUAL SERVICE OFFERINGS
-  Americana's services are defined by the patterns visible in "americanaExistingPages". Their core offerings are:
+  Core offerings visible in americanaExistingPages:
     - Wrought iron and ornamental iron fences (residential and commercial)
     - Custom iron gates (driveway, walk, security, automated)
     - Iron railings (interior, exterior, balcony, stair)
@@ -259,44 +236,35 @@ Before adding any "build a new page" recommendation, verify ALL THREE of the fol
     - Spiral staircases, custom metalwork, ornamental ironwork
     - Service to Chicago and surrounding Illinois suburbs
 
-  Before recommending any page, confirm the underlying service or topic is something Americana actually does. If it isn't (for example, vinyl fence installation, wood fence staining, garage door services, HVAC, landscaping, pool fencing if no existing pool-fence page exists), DO NOT recommend it. Stay inside Americana's lane.
-
-  Service-area pages must be for Chicago or its Illinois suburbs (e.g., Naperville, Evanston, Oak Park, Schaumburg, Aurora, Joliet, Wheaton, Arlington Heights, Skokie, Cicero, Berwyn). Do NOT recommend service-area pages for cities outside Chicagoland (e.g., Milwaukee, Indianapolis, Detroit) even if the competitor targets them.
-
   TEST C. THE COMPETITOR'S ACTIVITY THIS WEEK ACTUALLY MOTIVATES IT
-  The recommendation must be a direct response to something in this week's data (a specific new URL the competitor built, a specific keyword they're now ranking for, a specific backlink they earned). Cite that trigger in the recommendation. Do not pad the list with generic SEO advice that has no link to the data.
+  The recommendation must be a direct response to something in this week's data. Cite that trigger.
 
-RULE 3: PHRASING REQUIREMENTS FOR RECOMMENDATIONS
-- For each recommendation, follow this exact pattern: "[Action]. Trigger: [what the competitor did this week]. Why this fits Americana: [the existing service or page this builds on]."
-- If you are recommending an UPDATE to an existing page, cite the existing path from americanaExistingPages verbatim.
-- If you are recommending a NEW page, state the proposed URL slug and confirm in one short clause that you checked americanaExistingPages and the slug does not already exist.
-- Recommendations must be specific. "Build out more service-area pages" is too vague. "Build /wrought-iron-fence-evanston, since competitor X just published their Evanston fence page and Americana has no Evanston-specific page" is specific.
+RULE 2: PHRASING REQUIREMENTS FOR RECOMMENDATIONS
+- For each recommendation: "[Action]. Trigger: [what the competitor did]. Why this fits Americana: [the existing service or page this builds on]."
+- For an UPDATE recommendation, cite the existing path from americanaExistingPages verbatim.
+- For a NEW page recommendation, state the proposed URL slug and confirm you checked americanaExistingPages.
+- Recommendations must be specific. "Build out more service-area pages" is too vague.
 
-RULE 4: WHEN UNCERTAIN, SKIP
-- If you cannot confirm the competitor URL is real, omit it from the report.
-- If you cannot confirm Americana offers the service, omit the recommendation.
-- If you cannot confirm Americana doesn't already have the page, omit the recommendation.
+RULE 3: WHEN UNCERTAIN, SKIP
 - A shorter, accurate report is better than a longer, padded one. Sections with no real data should say "No notable activity this week" and stop.
 
-=========================================
+Skip sections where there is no data. Do not invent data, URLs, keywords, or page intents. Never recommend a page Americana already has. Keep this report focused and specific to ${competitor.name} only.
 
-Skip sections where there is no data. Do not invent data, URLs, keywords, or page intents. Never recommend a page Americana already has. Never recommend a page outside Americana's actual service offerings. Keep this report focused and specific to ${competitor.name} only, do not discuss other competitors.`;
+CRITICAL RULE FOR SITEMAP FETCH FAILURES:
+The "sitemapFetchStatus" field tells you whether we were actually able to read ${competitor.name}'s sitemap this week.
+- If sitemapFetchStatus.ok is false, you MUST NOT write "no new pages were detected" or any phrasing that implies we looked and found nothing. Instead, state plainly that the sitemap could not be retrieved (include the error) and that new-page detection is unavailable until the issue is resolved. Mention this in the Executive Summary too.
+- If sitemapFetchStatus.ok is true and the diff arrays are empty, then it is correct to say no new pages were detected.`;
 
   const isBaselineRun = diff !== null && previousDate === null;
   const baselineNote = isBaselineRun
-    ? `(This is a baseline run with no previous sitemap snapshot, so every indexed URL appears as "new". Treat the sitemapDiff as a snapshot of ${competitor.name}'s current content footprint, not as activity from the last week. The "sitemapDiffTotals" object shows full counts; the URL arrays are sampled to the most relevant entries.)`
+    ? `(This is a baseline run with no previous sitemap snapshot, so every indexed URL appears as "new". Treat the sitemapDiff as a snapshot of ${competitor.name}'s current content footprint, not as activity from the last week.)`
     : '';
-
-  const serankingNote = serankingKeywords.length > 0
-    ? `(SE Ranking keyword data is included: ${serankingKeywords.length} market keywords for this competitor's service area. Use volumes to quantify recommendations only -- see system prompt instructions.)`
-    : '(No SE Ranking keyword data available for this competitor this week.)';
 
   const userPrompt = `Here is this week's data for ${competitor.name} for the report dated ${TODAY}.
 
-${diff ? '' : '(No sitemap diff available for this competitor this week.)'}
+${sitemapFetchError ? `(Sitemap fetch FAILED for this competitor this week: ${sitemapFetchError}. Do not claim "no changes" — say the fetch failed.)` : isBaseline ? `(BASELINE WEEK for this competitor: first successful sitemap capture. Their site has ${diff?.totalCurrentUrls} URLs total. Do NOT list these as "new pages built this week". Real diffs start next cycle.)` : diff ? '' : '(No sitemap diff available for this competitor this week.)'}
 ${baselineNote}
-${csvs.length === 0 ? '(No Semrush CSV data uploaded for this competitor this week.)' : ''}
-${serankingNote}
+${csvs.length === 0 ? '(No keyword or backlink data available for this competitor this week.)' : ''}
 ${americanaPages.length === 0 ? '(Warning: could not fetch Americana existing pages this run. Be extra careful recommending new pages.)' : `(Americana's existing ${americanaPages.length} content pages are listed in "americanaExistingPages" for cross-reference.)`}
 
 DATA:
@@ -337,11 +305,10 @@ async function main() {
 
   const diffs = loadDiffs();
   const csvSummaries = loadCsvSummaries();
-  const serankingSummaries = loadSerankingSummaries();
   const americanaPages = await fetchAmericanaPages();
 
-  if (!diffs && !csvSummaries && !serankingSummaries) {
-    console.log('No data to report on. Run fetch-sitemaps, diff-sitemaps, and fetch-seranking first.');
+  if (!diffs && !csvSummaries) {
+    console.log('No data to report on. Run fetch-sitemaps and diff-sitemaps first.');
     process.exit(0);
   }
 
@@ -358,8 +325,6 @@ async function main() {
     console.log(`\nGenerating report for ${competitor.name}...`);
     const diff = diffs?.diffs.find((d) => d.competitorId === competitor.id) || null;
     const csvs = csvSummaries?.summaries.filter((s) => s.competitorId === competitor.id) || [];
-    const serankingData = serankingSummaries?.summaries.find((s) => s.competitorId === competitor.id);
-    const serankingKeywords = serankingData?.topRows ?? [];
 
     try {
       const result = await generateForCompetitor(
@@ -367,7 +332,6 @@ async function main() {
         competitor,
         diff,
         csvs,
-        serankingKeywords,
         americanaPages,
         diffs?.previousDate || null
       );
