@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowLeft, Info } from 'lucide-react';
+import { ArrowLeft, Info, Zap } from 'lucide-react';
 
 export default function HelpPage() {
   return (
@@ -17,7 +17,7 @@ export default function HelpPage() {
           How to Use the Competitor Intelligence Tool
         </h1>
         <p className="text-slate-600 mt-1">
-          A step-by-step guide to running weekly competitor intelligence reports.
+          A guide to tracking competitors and getting weekly intelligence reports for Americana Iron Works.
         </p>
       </header>
 
@@ -34,11 +34,23 @@ export default function HelpPage() {
         </p>
       </div>
 
+      <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-start gap-3">
+        <Zap className="text-green-600 flex-shrink-0 mt-0.5" size={18} />
+        <div className="text-sm text-green-900">
+          <p className="font-medium">Data is collected automatically</p>
+          <p className="mt-1 text-green-800">
+            Each week, the tool automatically pulls keyword rankings, backlink movements, and new
+            page activity from your competitors. You don&apos;t need to export or upload anything.
+            Just add your competitors once and run reports whenever you&apos;re ready.
+          </p>
+        </div>
+      </div>
+
       <div className="space-y-6">
         <Step
           number={1}
-          title="Manage Your Competitors"
-          description="Decide which competitor websites the tool should track."
+          title="Add a Competitor"
+          description="Tell the tool which competitor websites to monitor each week."
         >
           <p>
             Head to the{' '}
@@ -51,19 +63,19 @@ export default function HelpPage() {
             items={[
               {
                 term: 'Add a Competitor',
-                desc: 'Click "Add competitor", enter the company name and domain (e.g. firstfence.com). The tool auto-detects their sitemap.',
+                desc: 'Click "Add competitor", enter the company name and their website domain (e.g. firstfence.com). The tool detects their sitemap automatically.',
               },
               {
                 term: 'Pause Tracking',
-                desc: 'Toggle the "Tracking" checkbox off. The competitor stays in the list but is skipped in reports.',
+                desc: 'Toggle the "Tracking" checkbox off. The competitor stays in your list but is skipped in upcoming reports.',
               },
               {
                 term: 'Remove a Competitor',
-                desc: 'Click the red trash icon. This removes them permanently from future reports.',
+                desc: 'Click the red trash icon. This removes them permanently from all future reports.',
               },
               {
                 term: 'How Many to Track',
-                desc: 'Around 5 competitors is a good starting point. You can add or remove anytime.',
+                desc: 'Three to five competitors is a good starting point. You can add or remove them at any time.',
               },
             ]}
           />
@@ -71,90 +83,8 @@ export default function HelpPage() {
 
         <Step
           number={2}
-          title="Export Weekly Data from SEMrush"
-          description="Each week, pull a few CSVs from SEMrush so the AI has data on backlinks and keyword movements."
-        >
-          <p>For each competitor, pull these 2 reports per week:</p>
-
-          <SubStep
-            label="Backlinks (new in last 7 days)"
-            steps={[
-              'In SEMrush, open Backlink Analytics',
-              'Enter the competitor\'s domain',
-              'Go to the Backlinks tab',
-              'Filter to "New" backlinks, last 7 days',
-              'Click Export → CSV',
-              'Save as: {competitor-id}-backlinks.csv',
-            ]}
-          />
-
-          <SubStep
-            label="Position Changes (last 7 days)"
-            steps={[
-              'In SEMrush, open Organic Research',
-              'Enter the competitor\'s domain',
-              'Go to the Position Changes tab',
-              'Filter type: Improved + Declined + New + Lost',
-              'Set period to last 7 days',
-              'Click Export → CSV',
-              'Save as: {competitor-id}-positions.csv',
-            ]}
-          />
-
-          <p className="text-sm text-slate-600">
-            The competitor ID is the lowercase, dash-separated version of the
-            domain (e.g. <code>bobswatches</code>). You can see all IDs
-            on the{' '}
-            <Link href="/upload" className="text-blue-600 hover:underline">
-              Upload page
-            </Link>
-            .
-          </p>
-
-          <Callout
-            title="Why are we exporting CSVs manually?"
-            body="SEMrush sells API access separately from their main subscription, and it's a meaningful additional cost (typically several hundred dollars per month). Manually exporting takes about 15 minutes per week and uses your existing SEMrush plan with no additional fees. If we ever want to automate the upload step, we can revisit the API trade-off later."
-          />
-        </Step>
-
-        <Step
-          number={3}
-          title="Upload Your CSVs"
-          description="Drop the SEMrush exports into the Upload page so they're available for this week's report."
-        >
-          <p>
-            Go to the{' '}
-            <Link href="/upload" className="text-blue-600 hover:underline">
-              Upload CSVs
-            </Link>{' '}
-            page.
-          </p>
-          <DefList
-            items={[
-              {
-                term: 'Drag and Drop',
-                desc: 'Drop all your CSV files into the upload area at once. Multiple files are supported.',
-              },
-              {
-                term: 'Watch Status',
-                desc: 'Each file shows a green checkmark when saved. Failed uploads will display an error message.',
-              },
-              {
-                term: 'Filename Convention',
-                desc: 'Use {competitor-id}-{type}.csv format (e.g. bobswatches-backlinks.csv) so the AI knows which competitor each file belongs to.',
-              },
-            ]}
-          />
-          <p className="text-sm text-slate-600">
-            Files are stored in this week&apos;s data folder, automatically
-            dated.
-          </p>
-        </Step>
-
-        <Step
-          number={4}
           title="Run the Weekly Report"
-          description="Generate the AI intelligence report on demand, or let it run automatically on schedule."
+          description="Generate the AI intelligence report on demand, or let it run automatically on a schedule."
         >
           <p>
             Go to the{' '}
@@ -167,15 +97,15 @@ export default function HelpPage() {
             items={[
               {
                 term: 'Manual Trigger',
-                desc: 'Click "Run weekly report now". A live progress tracker shows each phase as the report is generated.',
+                desc: 'Click "Run weekly report now". A live progress tracker shows each phase as the report builds.',
               },
               {
                 term: 'Automatic Schedule',
-                desc: 'When enabled in Settings (see Step 6), reports run every Monday at 9:00 AM UTC. No action needed from you.',
+                desc: 'When enabled in Settings (see Step 4), reports run every Monday at 9:00 AM UTC automatically. No action needed from you.',
               },
               {
                 term: 'Phases You\'ll See',
-                desc: 'Starting analysis → Scanning competitor websites → Comparing against last week → Reading SEMrush data → Generating intelligence report → Publishing report.',
+                desc: 'Starting analysis → Scanning competitor websites → Comparing against last week → Reading competitor keyword and backlink data → Generating intelligence report → Publishing report.',
               },
               {
                 term: 'Total Time',
@@ -186,9 +116,9 @@ export default function HelpPage() {
         </Step>
 
         <Step
-          number={5}
+          number={3}
           title="View, Download, or Delete Reports"
-          description="Browse all weekly reports and export them as PDF for sharing with stakeholders."
+          description="Browse all weekly reports and export them as PDF for sharing with your team."
         >
           <p>
             All reports are listed on the{' '}
@@ -201,11 +131,11 @@ export default function HelpPage() {
             items={[
               {
                 term: 'View Report',
-                desc: 'Click any report title or the "View" button to see the full report.',
+                desc: 'Click any report title or the "View" button to open the full report.',
               },
               {
                 term: 'Download as PDF',
-                desc: 'On any report detail page, click "Download PDF" to save a polished, ready-to-share PDF file. The download starts immediately.',
+                desc: 'On any report detail page, click "Download PDF" to save a ready-to-share PDF. The download starts immediately.',
               },
               {
                 term: 'Delete Report',
@@ -216,9 +146,9 @@ export default function HelpPage() {
         </Step>
 
         <Step
-          number={6}
+          number={4}
           title="Settings: Choose How Reports Run"
-          description="Decide whether reports run automatically or only when you trigger them manually."
+          description="Decide whether reports run automatically each week or only when you trigger them manually."
         >
           <p>
             Visit the{' '}
@@ -231,15 +161,15 @@ export default function HelpPage() {
             items={[
               {
                 term: 'Run Automatically',
-                desc: 'Reports run on schedule every Monday at 9:00 AM UTC. You can also still trigger reports manually any time.',
+                desc: 'Reports run on schedule every Monday at 9:00 AM UTC. You can still trigger reports manually at any time.',
               },
               {
                 term: 'Manual Only',
-                desc: "The Monday auto-run is disabled. Reports only run when you click 'Run weekly report' on the Run Report page.",
+                desc: "The Monday auto-run is disabled. Reports only run when you click \"Run weekly report\" on the Run Report page.",
               },
               {
                 term: 'How to Switch',
-                desc: 'Just click the option you want. The setting saves instantly.',
+                desc: 'Just click the option you want on the Settings page. The change saves instantly.',
               },
             ]}
           />
@@ -302,43 +232,5 @@ function DefList({ items }: { items: { term: string; desc: string }[] }) {
         </div>
       ))}
     </dl>
-  );
-}
-
-function SubStep({ label, steps }: { label: string; steps: string[] }) {
-  return (
-    <div className="bg-slate-50 border border-slate-200 rounded-md p-4">
-      <h3 className="font-semibold text-slate-900 text-sm mb-2">{label}</h3>
-      <ol className="list-decimal list-inside space-y-1 text-sm text-slate-700">
-        {steps.map((s, i) => (
-          <li key={i}>
-            {s.includes(':') || s.startsWith('Save as') ? (
-              <>
-                {s.split(/(\{[^}]+\}-[a-z]+\.csv|\{[^}]+\})/g).map((part, j) =>
-                  /^\{[^}]+\}/.test(part) || /\.csv$/.test(part) ? (
-                    <code key={j} className="bg-slate-200 px-1.5 py-0.5 rounded text-xs">
-                      {part}
-                    </code>
-                  ) : (
-                    <span key={j}>{part}</span>
-                  )
-                )}
-              </>
-            ) : (
-              s
-            )}
-          </li>
-        ))}
-      </ol>
-    </div>
-  );
-}
-
-function Callout({ title, body }: { title: string; body: string }) {
-  return (
-    <div className="bg-amber-50 border border-amber-200 rounded-md p-4">
-      <p className="font-semibold text-amber-900 text-sm">{title}</p>
-      <p className="text-sm text-amber-900 mt-1">{body}</p>
-    </div>
   );
 }

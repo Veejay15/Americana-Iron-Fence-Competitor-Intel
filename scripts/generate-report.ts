@@ -120,12 +120,13 @@ function trimCsvs(csvs: CsvSummary[]): CsvSummary[] {
   }));
 }
 
+// Generates sections 1–4 for a single competitor. Recommendations are handled
+// separately in generateCombinedRecommendations() after all competitors run.
 async function generateForCompetitor(
   client: Anthropic,
   competitor: Competitor,
   diff: CompetitorDiff | null,
   csvs: CsvSummary[],
-  americanaPages: string[],
   previousDate: string | null
 ): Promise<{ markdown: string; inputTokens: number; outputTokens: number }> {
   const sitemapFetchError = diff?.fetchError;
@@ -139,7 +140,6 @@ async function generateForCompetitor(
       name: competitor.name,
       domain: competitor.domain,
     },
-    americanaExistingPages: americanaPages,
     sitemapDiff: diff ? trimmed : { newUrls: [], removedUrls: [], updatedUrls: [] },
     sitemapDiffTotals: diff ? meta : null,
     sitemapFetchStatus: sitemapFetchError
@@ -182,11 +182,12 @@ If a section has no notable activity, say it the way a colleague would say it ou
 Tone: confident, direct, no fluff. No emojis. No em dashes (use periods, commas, parentheses, or "and/but" instead).
 
 Structure:
-1. Executive Summary (2 to 4 bullet points, what this competitor did this week and what to do about it)
+1. Executive Summary (2 to 4 bullet points, what this competitor did this week)
 2. New Pages Built by ${competitor.name}
 3. Backlink Movements
 4. Keyword and Ranking Changes
-5. Recommended Actions for Americana Iron Works
+
+Do NOT include a Section 5 or any recommendations. Recommended actions are generated separately after all competitors are analyzed.
 
 =========================================
 SECTION 3: BACKLINK MOVEMENTS
@@ -216,44 +217,12 @@ If sitemapDiff.newUrls is empty and neither error condition applies, write that 
 If sitemapDiff.newUrls has entries, list them with inferred targeting based strictly on URL slug. If the slug is ambiguous (e.g., "/page-12345", a numeric ID, "/services/"), write "URL slug is too generic to determine intent" rather than guessing.
 
 =========================================
-STRICT ACCURACY RULES FOR RECOMMENDATIONS
+STRICT ACCURACY RULES
 =========================================
-
-RULE 1: ONLY RECOMMEND PAGES THAT MEET ALL THREE TESTS
-Before adding any "build a new page" recommendation, verify ALL THREE:
-
-  TEST A. NOT ALREADY BUILT
-  Search "americanaExistingPages" for the topic. If any existing path covers the same intent, the page already exists. Recommend updating it instead.
-
-  TEST B. ALIGNS WITH AMERICANA'S ACTUAL SERVICE OFFERINGS
-  Core offerings visible in americanaExistingPages:
-    - Wrought iron and ornamental iron fences (residential and commercial)
-    - Custom iron gates (driveway, walk, security, automated)
-    - Iron railings (interior, exterior, balcony, stair)
-    - Fire escapes and structural steel
-    - Fence installation, repair, and painting
-    - Chain link and aluminum fences
-    - Spiral staircases, custom metalwork, ornamental ironwork
-    - Service to Chicago and surrounding Illinois suburbs
-
-  TEST C. THE COMPETITOR'S ACTIVITY THIS WEEK ACTUALLY MOTIVATES IT
-  The recommendation must be a direct response to something in this week's data. Cite that trigger.
-
-RULE 2: PHRASING REQUIREMENTS FOR RECOMMENDATIONS
-- For each recommendation: "[Action]. Trigger: [what the competitor did]. Why this fits Americana: [the existing service or page this builds on]."
-- For an UPDATE recommendation, cite the existing path from americanaExistingPages verbatim.
-- For a NEW page recommendation, state the proposed URL slug and confirm you checked americanaExistingPages.
-- Recommendations must be specific. "Build out more service-area pages" is too vague.
-
-RULE 3: WHEN UNCERTAIN, SKIP
-- A shorter, accurate report is better than a longer, padded one. Sections with no real data should say "No notable activity this week" and stop.
-
-Skip sections where there is no data. Do not invent data, URLs, keywords, or page intents. Never recommend a page Americana already has. Keep this report focused and specific to ${competitor.name} only.
+Do not invent data, URLs, keywords, or page intents. Sections with no real data should say "No notable activity this week" and stop. Keep this report focused and specific to ${competitor.name} only.
 
 CRITICAL RULE FOR SITEMAP FETCH FAILURES:
-The "sitemapFetchStatus" field tells you whether we were actually able to read ${competitor.name}'s sitemap this week.
-- If sitemapFetchStatus.ok is false, you MUST NOT write "no new pages were detected" or any phrasing that implies we looked and found nothing. Instead, state plainly that the sitemap could not be retrieved (include the error) and that new-page detection is unavailable until the issue is resolved. Mention this in the Executive Summary too.
-- If sitemapFetchStatus.ok is true and the diff arrays are empty, then it is correct to say no new pages were detected.`;
+If sitemapFetchStatus.ok is false, you MUST NOT write "no new pages were detected." State that the sitemap could not be retrieved (include the error) and that new-page detection is unavailable until resolved. Mention this in the Executive Summary.`;
 
   const isBaselineRun = diff !== null && previousDate === null;
   const baselineNote = isBaselineRun
@@ -265,16 +234,15 @@ The "sitemapFetchStatus" field tells you whether we were actually able to read $
 ${sitemapFetchError ? `(Sitemap fetch FAILED for this competitor this week: ${sitemapFetchError}. Do not claim "no changes" — say the fetch failed.)` : isBaseline ? `(BASELINE WEEK for this competitor: first successful sitemap capture. Their site has ${diff?.totalCurrentUrls} URLs total. Do NOT list these as "new pages built this week". Real diffs start next cycle.)` : diff ? '' : '(No sitemap diff available for this competitor this week.)'}
 ${baselineNote}
 ${csvs.length === 0 ? '(No keyword or backlink data available for this competitor this week.)' : ''}
-${americanaPages.length === 0 ? '(Warning: could not fetch Americana existing pages this run. Be extra careful recommending new pages.)' : `(Americana's existing ${americanaPages.length} content pages are listed in "americanaExistingPages" for cross-reference.)`}
 
 DATA:
 ${JSON.stringify(dataPayload, null, 2)}
 
-Write the full report in markdown. Start with a top-level H1 like "# ${competitor.name}: Week of ${TODAY}".`;
+Write sections 1–4 only in markdown. Start with a top-level H1 like "# ${competitor.name}: Week of ${TODAY}". Do not include a Section 5 or any recommended actions.`;
 
   const response = await client.messages.create({
     model: 'claude-sonnet-4-6',
-    max_tokens: 6000,
+    max_tokens: 5000,
     system: systemPrompt,
     messages: [{ role: 'user', content: userPrompt }],
   });
@@ -282,6 +250,82 @@ Write the full report in markdown. Start with a top-level H1 like "# ${competito
   const textBlock = response.content.find((b) => b.type === 'text');
   if (!textBlock || textBlock.type !== 'text') {
     throw new Error('No text in Claude response');
+  }
+  return {
+    markdown: textBlock.text,
+    inputTokens: response.usage.input_tokens,
+    outputTokens: response.usage.output_tokens,
+  };
+}
+
+// After all per-competitor reports are generated, this produces a single
+// combined recommendations section (top 3–4 actions) that gets appended to
+// every competitor report. One set of actions across all competitors beats
+// N×5 per-competitor lists that overwhelm the client.
+async function generateCombinedRecommendations(
+  client: Anthropic,
+  competitorReports: { competitor: Competitor; markdown: string }[],
+  americanaPages: string[]
+): Promise<{ markdown: string; inputTokens: number; outputTokens: number }> {
+  const competitorCount = competitorReports.length;
+
+  const systemPrompt = `You are a senior SEO analyst advising the owner of Americana Iron Works (americanafence.com), a Chicago-based custom iron works and fence company serving residential and commercial clients. You have just reviewed ${competitorCount} competitor(s) this week. Your job is to select the top 3 to 4 highest-impact content actions Americana should take, drawn from the combined activity across ALL competitors reviewed.
+
+VOICE AND AUDIENCE RULES
+Plain English. No jargon. No data references. Tone: confident, direct, no fluff. No emojis. No em dashes.
+
+OUTPUT FORMAT
+- Start with this exact note on its own line in italics:
+  "*These are combined recommended actions based on a review of all ${competitorCount} competitor(s) monitored this week.*"
+- Then output exactly 3 to 4 numbered recommendations.
+- Each recommendation must follow this format:
+  "[Action]. Trigger: [which competitor did what]. Why this fits Americana: [the service or page this builds on]."
+- For a NEW page recommendation: state the proposed URL slug and confirm the topic does not already exist on Americana's site.
+- For an UPDATE recommendation: cite the existing Americana page path.
+
+SELECTION CRITERIA — rank and keep only the actions that are:
+1. Highest signal (multiple competitors pointing to the same gap, or one unusually significant move)
+2. Most immediately actionable (Americana can build or update this now)
+3. Most aligned with Americana's actual service offerings:
+   - Wrought iron and ornamental iron fences (residential and commercial)
+   - Custom iron gates (driveway, walk, security, automated)
+   - Iron railings (interior, exterior, balcony, stair)
+   - Fire escapes and structural steel
+   - Fence installation, repair, and painting
+   - Chain link and aluminum fences
+   - Spiral staircases, custom metalwork, ornamental ironwork
+   - Service to Chicago and surrounding Illinois suburbs
+
+DO NOT recommend pages Americana already has. Americana's existing pages are provided below.
+DO NOT pad with generic SEO advice. Every recommendation must link to something a competitor did this week.
+A focused list of 3 actions beats a padded list of 6. If only 2 actions are genuinely justified, output 2.
+
+Do not include an H1, H2, or section title in your output. Start directly with the italics note.`;
+
+  const competitorSummaries = competitorReports
+    .map((r, i) => `--- COMPETITOR ${i + 1}: ${r.competitor.name} (${r.competitor.domain}) ---\n${r.markdown}`)
+    .join('\n\n');
+
+  const userPrompt = `Date: ${TODAY}
+
+Americana's existing ${americanaPages.length} content pages (cross-reference — do not recommend pages already covered):
+${JSON.stringify(americanaPages)}
+
+COMPETITOR ANALYSES THIS WEEK:
+${competitorSummaries}
+
+Output the combined recommended actions now.`;
+
+  const response = await client.messages.create({
+    model: 'claude-sonnet-4-6',
+    max_tokens: 2000,
+    system: systemPrompt,
+    messages: [{ role: 'user', content: userPrompt }],
+  });
+
+  const textBlock = response.content.find((b) => b.type === 'text');
+  if (!textBlock || textBlock.type !== 'text') {
+    throw new Error('No text in Claude response for combined recommendations');
   }
   return {
     markdown: textBlock.text,
@@ -320,6 +364,7 @@ async function main() {
   let totalOutput = 0;
   const succeeded: string[] = [];
   const failed: string[] = [];
+  const succeededReports: { filePath: string; competitor: Competitor; markdown: string }[] = [];
 
   for (const competitor of competitors) {
     console.log(`\nGenerating report for ${competitor.name}...`);
@@ -332,7 +377,6 @@ async function main() {
         competitor,
         diff,
         csvs,
-        americanaPages,
         diffs?.previousDate || null
       );
       const filename = `${TODAY}-${competitor.id}.md`;
@@ -343,9 +387,34 @@ async function main() {
       totalInput += result.inputTokens;
       totalOutput += result.outputTokens;
       succeeded.push(competitor.name);
+      succeededReports.push({ filePath: outPath, competitor, markdown: result.markdown });
     } catch (err) {
       console.error(`  ✗ Failed: ${(err as Error).message}`);
       failed.push(competitor.name);
+    }
+  }
+
+  // Generate one combined recommendations section across all competitors and
+  // append it to every report so the client sees a single prioritised list
+  // instead of N×5 per-competitor action items.
+  if (succeededReports.length > 0) {
+    console.log(`\nGenerating combined recommended actions (${succeededReports.length} competitor(s))...`);
+    try {
+      const combined = await generateCombinedRecommendations(
+        client,
+        succeededReports.map((r) => ({ competitor: r.competitor, markdown: r.markdown })),
+        americanaPages
+      );
+      const combinedSection = `\n\n---\n\n## 5. Recommended Actions for Americana Iron Works\n\n${combined.markdown}`;
+      for (const report of succeededReports) {
+        fs.appendFileSync(report.filePath, combinedSection);
+      }
+      totalInput += combined.inputTokens;
+      totalOutput += combined.outputTokens;
+      console.log(`  ✓ Combined recommendations appended to ${succeededReports.length} report(s)`);
+      console.log(`    Tokens: input ${combined.inputTokens}, output ${combined.outputTokens}`);
+    } catch (err) {
+      console.error(`  ✗ Combined recommendations failed: ${(err as Error).message}`);
     }
   }
 
