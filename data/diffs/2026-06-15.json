@@ -1,0 +1,24 @@
+{
+  "date": "2026-06-15",
+  "previousDate": "2026-06-12",
+  "diffs": [
+    {
+      "competitorId": "innovafence-com",
+      "newUrls": [],
+      "removedUrls": [],
+      "updatedUrls": []
+    },
+    {
+      "competitorId": "paintersinc-net",
+      "newUrls": [],
+      "removedUrls": [],
+      "updatedUrls": []
+    },
+    {
+      "competitorId": "www-floresfencecompany-com",
+      "newUrls": [],
+      "removedUrls": [],
+      "updatedUrls": []
+    }
+  ]
+}
