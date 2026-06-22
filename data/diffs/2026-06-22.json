@@ -1,0 +1,35 @@
+{
+  "date": "2026-06-22",
+  "previousDate": "2026-06-15",
+  "diffs": [
+    {
+      "competitorId": "innovafence-com",
+      "newUrls": [
+        {
+          "url": "https://innovafence.com/illinois-fence-company/skokie-illinois-fence-company/"
+        }
+      ],
+      "removedUrls": [
+        {
+          "url": "https://innovafence.com/resources/faqs/"
+        },
+        {
+          "url": "https://innovafence.com/backlinks.cfm"
+        }
+      ],
+      "updatedUrls": []
+    },
+    {
+      "competitorId": "paintersinc-net",
+      "newUrls": [],
+      "removedUrls": [],
+      "updatedUrls": []
+    },
+    {
+      "competitorId": "www-floresfencecompany-com",
+      "newUrls": [],
+      "removedUrls": [],
+      "updatedUrls": []
+    }
+  ]
+}
