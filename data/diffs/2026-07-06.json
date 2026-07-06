@@ -1,0 +1,78 @@
+{
+  "date": "2026-07-06",
+  "previousDate": "2026-06-29",
+  "diffs": [
+    {
+      "competitorId": "innovafence-com",
+      "newUrls": [
+        {
+          "url": "https://innovafence.com/illinois-fence-company/evanston-illinois-fence-company/"
+        }
+      ],
+      "removedUrls": [],
+      "updatedUrls": []
+    },
+    {
+      "competitorId": "paintersinc-net",
+      "newUrls": [],
+      "removedUrls": [],
+      "updatedUrls": []
+    },
+    {
+      "competitorId": "www-floresfencecompany-com",
+      "newUrls": [
+        {
+          "url": "https://www.floresfencecompany.com/inquiry-services-page",
+          "lastmod": "2026-07-03"
+        }
+      ],
+      "removedUrls": [],
+      "updatedUrls": [
+        {
+          "url": "https://www.floresfencecompany.com/blank",
+          "lastmod": "2026-07-03"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/copy-of-chain-fence",
+          "lastmod": "2026-07-03"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/services",
+          "lastmod": "2026-07-03"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/chain-fence",
+          "lastmod": "2026-07-03"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/vinyl-fence",
+          "lastmod": "2026-07-03"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/wood-fence",
+          "lastmod": "2026-07-03"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/metal-fence",
+          "lastmod": "2026-07-03"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/work",
+          "lastmod": "2026-07-03"
+        },
+        {
+          "url": "https://www.floresfencecompany.com",
+          "lastmod": "2026-07-03"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/contact",
+          "lastmod": "2026-07-03"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/about",
+          "lastmod": "2026-07-03"
+        }
+      ]
+    }
+  ]
+}
