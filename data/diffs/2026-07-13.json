@@ -1,0 +1,103 @@
+{
+  "date": "2026-07-13",
+  "previousDate": "2026-07-06",
+  "diffs": [
+    {
+      "competitorId": "innovafence-com",
+      "newUrls": [],
+      "removedUrls": [],
+      "updatedUrls": []
+    },
+    {
+      "competitorId": "paintersinc-net",
+      "newUrls": [
+        {
+          "url": "https://paintersinc.net/commercial-painting-contractors-elgin-il/",
+          "lastmod": "2026-07-09T12:20:56+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/industrial/elk-grove-village-warehouse-floor-striping/",
+          "lastmod": "2026-07-09T15:02:17+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/commercial/willowbrook-office-interior-painting/",
+          "lastmod": "2026-07-09T15:03:18+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/industrial/chicago-warehouse-interior-repainting/",
+          "lastmod": "2026-07-09T15:04:03+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/industrial/woodridge-warehouse-floor-striping/",
+          "lastmod": "2026-07-09T15:05:26+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/hoa/barlett-townhouse-complex-fence-staining/",
+          "lastmod": "2026-07-09T15:07:16+00:00"
+        }
+      ],
+      "removedUrls": [],
+      "updatedUrls": [
+        {
+          "url": "https://paintersinc.net/commercial-painting-contractors-rosemont-il/",
+          "lastmod": "2026-07-09T11:26:04+00:00"
+        }
+      ]
+    },
+    {
+      "competitorId": "www-floresfencecompany-com",
+      "newUrls": [],
+      "removedUrls": [],
+      "updatedUrls": [
+        {
+          "url": "https://www.floresfencecompany.com/contact",
+          "lastmod": "2026-07-10"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/blank",
+          "lastmod": "2026-07-10"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/copy-of-chain-fence",
+          "lastmod": "2026-07-10"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/services",
+          "lastmod": "2026-07-10"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/inquiry-services-page",
+          "lastmod": "2026-07-10"
+        },
+        {
+          "url": "https://www.floresfencecompany.com",
+          "lastmod": "2026-07-10"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/about",
+          "lastmod": "2026-07-10"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/wood-fence",
+          "lastmod": "2026-07-10"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/metal-fence",
+          "lastmod": "2026-07-10"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/chain-fence",
+          "lastmod": "2026-07-10"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/work",
+          "lastmod": "2026-07-10"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/vinyl-fence",
+          "lastmod": "2026-07-10"
+        }
+      ]
+    }
+  ]
+}
