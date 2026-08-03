@@ -1,0 +1,108 @@
+{
+  "date": "2026-08-03",
+  "previousDate": "2026-07-27",
+  "diffs": [
+    {
+      "competitorId": "innovafence-com",
+      "newUrls": [],
+      "removedUrls": [],
+      "updatedUrls": []
+    },
+    {
+      "competitorId": "paintersinc-net",
+      "newUrls": [
+        {
+          "url": "https://paintersinc.net/reviews/",
+          "lastmod": "2026-07-28T08:51:38+00:00"
+        }
+      ],
+      "removedUrls": [
+        {
+          "url": "https://paintersinc.net/client-reviews/",
+          "lastmod": "2026-02-27T09:04:08+00:00"
+        }
+      ],
+      "updatedUrls": [
+        {
+          "url": "https://paintersinc.net/safety-first-approach/",
+          "lastmod": "2026-07-28T08:56:45+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/contact/",
+          "lastmod": "2026-07-28T09:00:32+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/clients/",
+          "lastmod": "2026-07-28T09:03:29+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/faqs/",
+          "lastmod": "2026-07-28T09:04:06+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/",
+          "lastmod": "2026-07-28T09:04:46+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/join-our-team/",
+          "lastmod": "2026-07-28T09:05:28+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/workmanship-warranty/",
+          "lastmod": "2026-07-28T09:06:17+00:00"
+        }
+      ]
+    },
+    {
+      "competitorId": "www-floresfencecompany-com",
+      "newUrls": [],
+      "removedUrls": [],
+      "updatedUrls": [
+        {
+          "url": "https://www.floresfencecompany.com",
+          "lastmod": "2026-07-31"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/metal-fence",
+          "lastmod": "2026-07-31"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/chain-fence",
+          "lastmod": "2026-07-31"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/services",
+          "lastmod": "2026-07-31"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/about",
+          "lastmod": "2026-07-31"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/inquiry-services-page",
+          "lastmod": "2026-07-31"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/work",
+          "lastmod": "2026-07-31"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/contact",
+          "lastmod": "2026-07-31"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/copy-of-chain-fence",
+          "lastmod": "2026-07-31"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/wood-fence",
+          "lastmod": "2026-07-31"
+        },
+        {
+          "url": "https://www.floresfencecompany.com/vinyl-fence",
+          "lastmod": "2026-07-31"
+        }
+      ]
+    }
+  ]
+}
