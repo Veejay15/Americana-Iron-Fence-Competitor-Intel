@@ -1,0 +1,102 @@
+{
+  "date": "2026-09-28",
+  "previousDate": "2026-09-21",
+  "diffs": [
+    {
+      "competitorId": "innovafence-com",
+      "newUrls": [],
+      "removedUrls": [],
+      "updatedUrls": []
+    },
+    {
+      "competitorId": "paintersinc-net",
+      "newUrls": [
+        {
+          "url": "https://paintersinc.net/projects/interior-painting/",
+          "lastmod": "2026-09-24T09:37:31+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/exterior-painting/",
+          "lastmod": "2026-09-24T09:37:36+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/office-painting/",
+          "lastmod": "2026-09-24T09:39:20+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/warehouse/",
+          "lastmod": "2026-09-24T09:42:09+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/apartment/",
+          "lastmod": "2026-09-24T09:43:21+00:00"
+        }
+      ],
+      "removedUrls": [],
+      "updatedUrls": [
+        {
+          "url": "https://paintersinc.net/blog/",
+          "lastmod": "2026-09-23T14:51:06+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/blog/minimize-business-disruption-commercial-painting/",
+          "lastmod": "2026-09-23T14:50:46+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/blog/paint-lifespan-in-chicago-weather/",
+          "lastmod": "2026-09-23T14:51:06+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/industrial/",
+          "lastmod": "2026-09-23T15:05:46+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/educational/",
+          "lastmod": "2026-09-23T15:06:58+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/hoa/",
+          "lastmod": "2026-09-23T15:08:24+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/commercial/",
+          "lastmod": "2026-09-24T07:02:37+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/commercial-painting-services/",
+          "lastmod": "2026-09-24T08:56:52+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/industrial-painting/",
+          "lastmod": "2026-09-24T08:59:08+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/hoa-painting/",
+          "lastmod": "2026-09-24T09:05:23+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/warehouse-painting/",
+          "lastmod": "2026-09-24T09:16:47+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/commercial-painting-services/interior-painting/",
+          "lastmod": "2026-09-24T09:22:36+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/commercial-painting-services/exterior-painting/",
+          "lastmod": "2026-09-24T09:24:08+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/office-painting/",
+          "lastmod": "2026-09-24T09:26:24+00:00"
+        }
+      ]
+    },
+    {
+      "competitorId": "www-floresfencecompany-com",
+      "newUrls": [],
+      "removedUrls": [],
+      "updatedUrls": []
+    }
+  ]
+}
