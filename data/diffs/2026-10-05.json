@@ -1,0 +1,227 @@
+{
+  "date": "2026-10-05",
+  "previousDate": "2026-09-28",
+  "diffs": [
+    {
+      "competitorId": "innovafence-com",
+      "newUrls": [],
+      "removedUrls": [],
+      "updatedUrls": []
+    },
+    {
+      "competitorId": "paintersinc-net",
+      "newUrls": [
+        {
+          "url": "https://paintersinc.net/projects/hoa/bartlett-townhouse-complex-fence-staining/",
+          "lastmod": "2026-09-30T06:52:16+00:00"
+        }
+      ],
+      "removedUrls": [
+        {
+          "url": "https://paintersinc.net/projects/hoa/barlett-townhouse-complex-fence-staining/",
+          "lastmod": "2026-07-09T15:07:16+00:00"
+        }
+      ],
+      "updatedUrls": [
+        {
+          "url": "https://paintersinc.net/blog/",
+          "lastmod": "2026-10-05T14:43:29+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/blog/choose-paint-colors-for-apartments-condos/",
+          "lastmod": "2026-10-02T14:43:53+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/blog/stucco-painting-and-repair/",
+          "lastmod": "2026-10-02T14:50:59+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/blog/warehouse-safety-line-painting-guide-and-osha-floor-marking-standards/",
+          "lastmod": "2026-10-05T06:17:05+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/blog/signs-of-bad-interior-exterior-paint-job/",
+          "lastmod": "2026-10-05T06:24:39+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/blog/voc-paint-vs-low-voc-paint-vs-zero-voc-paint/",
+          "lastmod": "2026-10-05T07:19:58+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/blog/how-to-prepare-surfaces-for-painting/",
+          "lastmod": "2026-10-05T07:23:03+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/blog/painting-high-traffic-areas/",
+          "lastmod": "2026-10-05T07:40:09+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/blog/why-does-your-paint-bubble-crack-and-peel-off-the-walls/",
+          "lastmod": "2026-10-05T07:47:25+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/blog/how-to-choose-the-best-wall-paint-color-for-office/",
+          "lastmod": "2026-10-05T07:50:33+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/blog/repainting-metal-surfaces/",
+          "lastmod": "2026-10-05T07:54:57+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/blog/what-color-to-paint-ceiling/",
+          "lastmod": "2026-10-05T07:59:00+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/blog/caulk-before-or-after-painting-exterior/",
+          "lastmod": "2026-10-05T08:09:20+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/blog/how-to-choose-white-paint-for-your-business/",
+          "lastmod": "2026-10-05T08:22:12+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/blog/reasons-to-repaint-you-commercial-building/",
+          "lastmod": "2026-10-05T08:28:55+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/blog/all-you-need-to-know-about-warehouse-painting/",
+          "lastmod": "2026-10-05T14:43:29+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/interior-painting/",
+          "lastmod": "2026-09-29T15:02:50+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/exterior-painting/",
+          "lastmod": "2026-09-29T15:06:20+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/warehouse/",
+          "lastmod": "2026-09-30T06:22:21+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/apartment/",
+          "lastmod": "2026-09-30T06:28:57+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/industrial/addison-dust-collectors-painting/",
+          "lastmod": "2026-09-30T06:53:18+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/industrial/oswego-warehouse-interior-exterior-painting/",
+          "lastmod": "2026-09-30T06:54:41+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/commercial/libertyville-gym-interior-painting/",
+          "lastmod": "2026-09-30T06:55:30+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/industrial/roselle-warehouse-interior-office-painting/",
+          "lastmod": "2026-09-30T06:56:00+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/office-painting/",
+          "lastmod": "2026-09-30T09:42:09+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/painter-for-a-day/",
+          "lastmod": "2026-10-02T13:58:01+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/commercial-painting-services/",
+          "lastmod": "2026-10-02T14:01:10+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/hoa-painting/",
+          "lastmod": "2026-10-02T14:02:07+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/metal-roof-painting/",
+          "lastmod": "2026-10-02T14:02:46+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/safety-first-approach/",
+          "lastmod": "2026-10-02T14:12:09+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/hallway-painting-colors-and-paints/",
+          "lastmod": "2026-10-02T14:13:46+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/floor-marking-line-striping-services/",
+          "lastmod": "2026-10-02T14:48:06+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/difficult-access-painting/",
+          "lastmod": "2026-10-02T14:51:44+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/commercial-painting-contractors-rosemont-il/",
+          "lastmod": "2026-10-02T14:54:04+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/commercial-painting-contractors-elgin-il/",
+          "lastmod": "2026-10-05T06:37:01+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/commercial-painting-contractors-west-chicago-il/",
+          "lastmod": "2026-10-05T06:44:53+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/retail-painting/",
+          "lastmod": "2026-10-05T07:24:17+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/commercial-painting-contractors-lombard-il/",
+          "lastmod": "2026-10-05T07:27:20+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/window-and-door-painting/",
+          "lastmod": "2026-10-05T07:29:06+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/commercial-painting-contractors-oak-brook-il/",
+          "lastmod": "2026-10-05T07:36:32+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/about/",
+          "lastmod": "2026-10-05T07:37:45+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/church-painting/",
+          "lastmod": "2026-10-05T07:38:50+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/commercial/",
+          "lastmod": "2026-10-05T07:42:31+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/commercial-painting-services/interior-painting/",
+          "lastmod": "2026-10-05T09:04:45+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/reviews/",
+          "lastmod": "2026-10-05T09:49:58+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/painting-cost-calculator/",
+          "lastmod": "2026-10-05T09:54:28+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/privacy-policy/",
+          "lastmod": "2026-10-05T09:58:24+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/review-us/",
+          "lastmod": "2026-10-05T10:00:14+00:00"
+        }
+      ]
+    },
+    {
+      "competitorId": "www-floresfencecompany-com",
+      "newUrls": [],
+      "removedUrls": [],
+      "updatedUrls": []
+    }
+  ]
+}
