@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-19",
+  "previousDate": "2026-10-12",
+  "diffs": [
+    {
+      "competitorId": "innovafence-com",
+      "newUrls": [],
+      "removedUrls": [],
+      "updatedUrls": []
+    },
+    {
+      "competitorId": "paintersinc-net",
+      "newUrls": [],
+      "removedUrls": [],
+      "updatedUrls": [
+        {
+          "url": "https://paintersinc.net/blog/",
+          "lastmod": "2026-10-13T09:12:43+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/blog/repainting-metal-surfaces/",
+          "lastmod": "2026-10-13T09:07:58+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/blog/what-color-to-paint-ceiling/",
+          "lastmod": "2026-10-13T09:12:43+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/commercial-painting-contractors-lisle-il/",
+          "lastmod": "2026-10-13T09:32:40+00:00"
+        }
+      ]
+    },
+    {
+      "competitorId": "www-floresfencecompany-com",
+      "newUrls": [],
+      "removedUrls": [],
+      "updatedUrls": []
+    }
+  ]
+}
