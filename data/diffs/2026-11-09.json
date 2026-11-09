@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-09",
+  "previousDate": "2026-11-02",
+  "diffs": [
+    {
+      "competitorId": "innovafence-com",
+      "newUrls": [],
+      "removedUrls": [],
+      "updatedUrls": []
+    },
+    {
+      "competitorId": "paintersinc-net",
+      "newUrls": [
+        {
+          "url": "https://paintersinc.net/blog/commercial-ceiling-painting/",
+          "lastmod": "2026-11-06T13:02:40+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/warehouse-painting/",
+          "lastmod": "2026-11-04T07:51:20+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/apartment-painting/",
+          "lastmod": "2026-11-04T10:51:11+00:00"
+        }
+      ],
+      "removedUrls": [
+        {
+          "url": "https://paintersinc.net/projects/warehouse/",
+          "lastmod": "2026-09-30T06:22:21+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/apartment/",
+          "lastmod": "2026-09-30T06:28:57+00:00"
+        }
+      ],
+      "updatedUrls": [
+        {
+          "url": "https://paintersinc.net/blog/",
+          "lastmod": "2026-11-06T13:02:40+00:00"
+        },
+        {
+          "url": "https://paintersinc.net/projects/office-painting/",
+          "lastmod": "2026-11-04T07:50:22+00:00"
+        }
+      ]
+    },
+    {
+      "competitorId": "www-floresfencecompany-com",
+      "newUrls": [],
+      "removedUrls": [],
+      "updatedUrls": []
+    }
+  ]
+}
